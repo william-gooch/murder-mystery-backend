@@ -9,7 +9,7 @@
 <body>
 
     <script>
-const ws = new WebSocket('ws://ws58.host.cs.st-andrews.ac.uk/user'); 
+const ws = new WebSocket('wss://ws58.host.cs.st-andrews.ac.uk/user'); 
 ws.onopen = function () { 
     // send binary messages
     ws.send(JSON.stringify({ user: "william" }));     // send text messages
