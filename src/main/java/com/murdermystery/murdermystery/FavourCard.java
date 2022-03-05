@@ -6,6 +6,11 @@ import com.murdermystery.murdermystery.SelectionRequest.SelectionType;
 
 public class FavourCard extends Card {
 
+    public FavourCard(int id) {
+        this.id = id;
+        desc = "Allows another player to give a card of their choice to the user";
+    }
+
     public Boolean favour(GameState gd, Player userPlayer) {
         if (gd.getDay() == false) {
             return false;

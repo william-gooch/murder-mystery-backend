@@ -4,10 +4,15 @@ import java.util.Arrays;
 import java.util.*;
 
 public class SwapCard extends Card {
+    public SwapCard(int id) {
+        this.id = id;
+        desc = "Use this to swap one card with another player";
+    }
 
-    public GameState swap(Player userPlayer, Player otherPlayer, Card userCard, Card targetCard, GameState gd) {
+    public Boolean swap(Player userPlayer, Player otherPlayer, Card userCard, Card targetCard,
+            GameState gd) {
         // lists
-        Map<String, Player> players = gd.getPlayers();
+        HashMap<String, Player> players = gd.getPlayers();
         List<Player> playerList = new ArrayList<>(players.values());
         ArrayList<Card> userDeck = userPlayer.getDeck();
         ArrayList<Card> otherDeck = otherPlayer.getDeck();
@@ -26,6 +31,6 @@ public class SwapCard extends Card {
         } else {
             // will bring up error
         }
-        return gd;
+        return true;
     }
 }
