@@ -4,28 +4,14 @@ import java.util.*;
 
 public class Player {
 
-
-
-    private int id;
     private String name;
     private ArrayList<Card> deck;
-    private RoleCard role;
     private Boolean isMurderer;
     
-    public Player(int id, String name) {
-        this.id = id;
+    public Player(String name) {
         this.name = name;
         this.deck = deck;
-        this.role = role;
-        this.isMurderer = isMurderer;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.isMurderer = false;
     }
 
     public ArrayList<Card> getDeck() {
@@ -34,6 +20,9 @@ public class Player {
 
     public void setDeck(ArrayList<Card> deck) {
         this.deck = deck;
+    }
+    public void setIsMurderer(Boolean bool) {
+        this.isMurderer = bool;
     }
 
     public Card getCard(int id) {
@@ -59,6 +48,10 @@ public class Player {
             }
         }
         return -1;
+    }
+
+    public void addCard(Card card) {
+        this.deck.add(card);
     }
 
 }

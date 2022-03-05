@@ -5,7 +5,7 @@ import java.util.*;
 
 public class SwapCard extends Card {
     
-    public GameState activity(Player userPlayer, Player otherPlayer, Card swapCard, Card userCard, Card targetCard, GameState gd) {
+    public GameState swap(Player userPlayer, Player otherPlayer, Card swapCard, Card userCard, Card targetCard, GameState gd) {
         //lists
         Player[] players = gd.getPlayers();
         List<Player> playerList = new ArrayList<>(Arrays.asList(players));
