@@ -7,7 +7,8 @@ public class SwapCard extends Card {
     
     public GameState swap(Player userPlayer, Player otherPlayer, Card swapCard, Card userCard, Card targetCard, GameState gd) {
         //lists
-        List<Player> playerList = new ArrayList<>(Arrays.asList(gd.getPlayers()));
+        Player[] players = gd.getPlayers();
+        List<Player> playerList = new ArrayList<>(Arrays.asList(players));
         ArrayList<Card> userDeck = userPlayer.getDeck();
         ArrayList<Card> otherDeck = otherPlayer.getDeck();
 
