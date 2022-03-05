@@ -29,6 +29,7 @@ public class FavourCard extends Card {
                 if (playerList.contains(userPlayer) && playerList.contains(otherPlayer)
                         && otherDeck.contains(targetCard)) {
                     userDeck.remove(this);
+                    gd.discard(this);
                     otherDeck.remove(targetCard);
                     userDeck.add(targetCard);
                     players.get(Player.getIdOfPlayer(players, userPlayer)).setDeck(userDeck);

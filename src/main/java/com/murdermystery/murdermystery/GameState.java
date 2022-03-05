@@ -118,6 +118,10 @@ public class GameState {
         return ret;
     }
 
+    public void discard(Card card) {
+        this.discardPile.add(card);
+    }
+
     // inclusive min, exclusive max
     public int randomFromRange(int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max);
