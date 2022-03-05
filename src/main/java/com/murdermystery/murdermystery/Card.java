@@ -59,11 +59,27 @@ public class Card {
         new TimeCard(54, "9pm", "Bit late for it to have been 9pm?"),
         new TimeCard(55, "10", "Ehhhhhhhh mayyyyyyyyybeeeeeeeeee 10pm?"),
         new TimeCard(56, "11", "Can't sleep? Just kill someone at 11pm!"),
-    }
+        new DayCard(57, "Sunday", "Imagine skipping church to commit murder"),
+        new DayCard(58, "Monday", "The start of the work week would be a good motive to kill someone"),
+        new DayCard(59, "Tuesday", "Nothing interesting happens on Tuesday... except murder?"),
+        new DayCard(60, "Wednesday", "Could a murder have taken place during Sinners?"),
+        new DayCard(61, "Thursday", "A crime committed on Thor's day; imagine"),
+        new DayCard(62, "Friday", "Nothing like a little murder to relieve the stress for Friday"),
+        new DayCard(63, "Saturday", "Party hard; murder harder?"),
+        new LocationCard(64, "Marine Lab", "A research facility for stingrays, manta rays, maybe other rays... and murder????"),
+        new LocationCard(65, "Geology Lab", "A research facility dedicated to rocks. God help the people who look at rocks for a living"),
+        new LocationCard(66, "Bathroom", "A place for release, relief, resentment, and maybe re-murder"),
+        new LocationCard(67, "Dormitories", "Once thought to provide full privacy, and fluffy beds. Now someone might've died here"),
+        new LocationCard(68, "Hallway", "Could a murder have happened here? In plain sight? :0"),
+        new LocationCard(69, "Cafeteria", "A place to get nice meals, nice coffee, a nice break. Nice"),
+        new LocationCard(70, "Electrical", "Could someone have used the vents system to get into Electrical, and kill someone? Was a body detected here?"),
+        new LocationCard(71, "Lounge", "A place for people to lounge around... and maybe die around")
+        
+    };
 
-    private int id;
-    private String name;
-    private String desc;
+    protected int id;
+    protected String name;
+    protected String desc;
 
     public int getID() {
         return id;
@@ -89,13 +105,6 @@ public class Card {
         this.desc = desc;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
     //overrides equals to check two Cards
     @Override
 

@@ -1,11 +1,44 @@
+@font-face {
+  font-family: 'SyneMono';
+  src: local('SyneMono'), url(./fonts/Syne_Mono/SyneMono-Regular.ttf) format('truetype');
+}
+
 .App {
   text-align: center;
+  font-family: 'SyneMono';
+}
+
+.startPrompt {
+  background-color: gray;
+  opacity: 0.5;
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+}
+
+.nameModal {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  z-index: 6;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.sendMessage {
+  bottom: 0;
 }
 
 .row1 {
   height: 60vh;
+  border-bottom: solid 5px black;
 }
 
 .row2 {
   height: 40vh;
+}
+
+.col1 {
+  border-right: solid 5px black;
 }

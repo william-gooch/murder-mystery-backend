@@ -16,22 +16,19 @@ public class SwapCard extends Card {
         ArrayList<Card> userDeck = userPlayer.getDeck();
         ArrayList<Card> otherDeck = otherPlayer.getDeck();
 
-        //validation and swapping
-        if(playerList.contains(userPlayer) && playerList.contains(otherPlayer) 
-            && userDeck.contains(userCard) && otherDeck.contains(targetCard)) {
-                userDeck.remove(swapCard);
-                userDeck.remove(userCard);
-                otherDeck.add(userCard);
-                otherDeck.remove(targetCard);
-                userDeck.add(targetCard);
+        // validation and swapping
+        if (playerList.contains(userPlayer) && playerList.contains(otherPlayer)
+                && userDeck.contains(userCard) && otherDeck.contains(targetCard)) {
+            userDeck.remove(this);
+            userDeck.remove(userCard);
+            otherDeck.add(userCard);
+            otherDeck.remove(targetCard);
+            userDeck.add(targetCard);
 
-                players[Player.getIndexOfPlayer(players, userPlayer)].setDeck(userDeck);
-                players[Player.getIndexOfPlayer(players, otherPlayer)].setDeck(otherDeck);
-
-                gd.setPlayers(players);
-        }
-        else {
-            //will bring up error
+            players.get(Player.getIdOfPlayer(players, userPlayer)).setDeck(userDeck);
+            players.get(Player.getIdOfPlayer(players, otherPlayer)).setDeck(otherDeck);
+        } else {
+            // will bring up error
         }
         return gd;
     }
