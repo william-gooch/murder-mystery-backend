@@ -11,10 +11,16 @@ public class GameState {
     private int deckPointer = TEST_DECK - 1;
     private int initHand = 3;
 
+<<<<<<< HEAD
     public void GameState() { //will be received from the front end
     }
     public void setUpPlayers(int noPlayers) {
         //create list of players
+=======
+
+
+    public GameState(int noPlayers) { //will be received from the front end
+>>>>>>> f4b859d9d1f0b31d8e4b9c0176cd290265de1b53
         players = new Player[noPlayers];
         // use below to find murderer
         int randomNum = ThreadLocalRandom.current().nextInt(0, noPlayers);  //https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
@@ -32,6 +38,7 @@ public class GameState {
             }
         }
 
+<<<<<<< HEAD
         //deal cards to players
     }
     // //https://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
@@ -44,5 +51,17 @@ public class GameState {
             fullDeck[index] = fullDeck[i];
             fullDeck[i] = a;
         }
+=======
+    public GameState() {
+        
+    }    
+    
+    public Player[] getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(Player[] players) {
+        this.players = players;
+>>>>>>> f4b859d9d1f0b31d8e4b9c0176cd290265de1b53
     }
 }   
