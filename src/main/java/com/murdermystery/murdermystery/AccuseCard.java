@@ -12,6 +12,7 @@ public class AccuseCard extends Card {
             return false;
         }
         userPlayer.getDeck().remove(this);
+        gd.discard(this);
         return true;
     }
 }

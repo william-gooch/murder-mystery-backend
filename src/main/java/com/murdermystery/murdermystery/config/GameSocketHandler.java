@@ -46,6 +46,8 @@ public class GameSocketHandler extends TextWebSocketHandler {
                 return;
             case "SELECT_PLAYER":
                 this.selectPlayer(session, jsonObject.get("playerId").toString());
+            case "SELECT_CARD":
+                this.selectCard(session, Integer.parseInt(jsonObject.get("cardId").toString()));
         }
     }
 

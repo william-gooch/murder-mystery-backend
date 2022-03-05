@@ -21,6 +21,7 @@ public class SwapCard extends Card {
         if (playerList.contains(userPlayer) && playerList.contains(otherPlayer)
                 && userDeck.contains(userCard) && otherDeck.contains(targetCard)) {
             userDeck.remove(this);
+            gd.discard(this);
             userDeck.remove(userCard);
             otherDeck.add(userCard);
             otherDeck.remove(targetCard);
