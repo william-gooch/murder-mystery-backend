@@ -18,7 +18,7 @@ public class GameState {
     private int initHand;
     private int turn;
 
-    public List<Listener> listeners;
+    private List<Listener> listeners;
 
     public GameState() {
         this.idPlayers = new HashMap<String, Player>();
