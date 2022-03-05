@@ -1,10 +1,11 @@
 package com.murdermystery.murdermystery;
-import java.util.concurrent.ThreadLocalRandom;
+
+import java.util.*;
 
 public class GameState {
 
-    // private static final int TEST_DECK = 50; //allows the deck to be created for now
-    // private static final String TEST_NAME = "amogus"; //allows Person objects to be created for now
+     private static final int TEST_DECK = 50; //allows the deck to be created for now
+     private static final String TEST_NAME = "amogus"; //allows Person objects to be created for now
 
     private ArrayList<Player> players;
     private Card[] fullDeck = new Card[TEST_DECK];
