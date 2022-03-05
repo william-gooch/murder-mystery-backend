@@ -7,6 +7,7 @@ import CreateName from './components/CreateName';
 import TutorialPopup from './components/TutorialPopup';
 import useWebsocket from './useWebsocket';
 import PlayerList from './components/PlayerList';
+import SelectPlayerPopup from './components/SelectPlayerPopup';
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
       )}
 
       <Container fluid>
+        <SelectPlayerPopup state={state} dispatch={dispatch} />
         <Row className="row1">
           <Col xs={8} className="col1">
             <h2>Game</h2>

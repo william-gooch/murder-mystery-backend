@@ -8,7 +8,7 @@ function Deck(props) {
     <div >
       <h2>{props.name}'s Deck</h2>
       {props.state?.me?.deck?.map?.(card => (
-        <Card {...card} />
+        <Card state={props.state} dispatch={props.dispatch} {...card} />
       ))}
     </div>
   );

@@ -100,7 +100,7 @@ public class GameState {
     }
 
     public void addPlayer(String id) {
-        Player newPlayer = new Player("Unnamed");
+        Player newPlayer = new Player(id, "Unnamed");
         idPlayers.put(id, newPlayer);
     }
 
