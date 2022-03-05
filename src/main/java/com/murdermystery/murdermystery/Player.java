@@ -6,24 +6,15 @@ public class Player {
 
 
 
-    private int id;
+    
     private String name;
     private ArrayList<Card> deck;
     private Boolean isMurderer;
     
-    public Player(int id, String name) {
-        this.id = id;
+    public Player(String name) {
         this.name = name;
         this.deck = deck;
         this.isMurderer = isMurderer;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public ArrayList<Card> getDeck() {
@@ -43,6 +34,22 @@ public class Player {
         return null;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Boolean getIsMurderer() {
+        return isMurderer;
+    }
+
+    public void setIsMurderer(Boolean isMurderer) {
+        this.isMurderer = isMurderer;
+    }
+
     public ArrayList<Card> removeCard(ArrayList<Card> deck, Card removedCard) {
         if(deck.contains(removedCard)) {
             deck.remove(removedCard);
@@ -59,4 +66,19 @@ public class Player {
         return -1;
     }
 
+    //overriding equals method to compare two person objects
+    @Override
+    public boolean equals(Object o) {
+        if(o == this) {
+            return true;
+        }
+
+        if(!(o instanceof Player)) {
+            return false;
+        }
+
+        Player p = (Player) o;
+        return name.equals(p.name) && deck.equals(p.deck)
+            && isMurderer == p.isMurderer;
+    }
 }
