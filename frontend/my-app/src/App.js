@@ -5,16 +5,12 @@ import GameChat from './components/GameChat';
 import { useEffect, useState } from 'react';
 import CreateName from './components/CreateName';
 import TutorialPopup from './components/TutorialPopup';
+import useWebsocket from './useWebsocket';
 
-const socket = new WebSocket("wss://javascript.info/article/websocket/chat/ws");
 
 function App() {
 
-  useEffect(() => {
-    socket.onopen = function(e) {
-      console.log("[open] Connection established");
-    };
-  }, []);
+  const [state, dispatch] = useWebsocket();
 
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
@@ -34,7 +30,8 @@ function App() {
       }
       {nameOpen &&
           <CreateName
-            socket={socket}
+            state={state}
+            dispatch={dispatch}
             name={name}
             setName={setName}
             close={close}

@@ -6,7 +6,7 @@ function CreateName(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.socket.send({event: "SET_NAME", name: props.name});
+    props.dispatch("SET_NAME", { name: props.name });
     props.close();
   }
 
