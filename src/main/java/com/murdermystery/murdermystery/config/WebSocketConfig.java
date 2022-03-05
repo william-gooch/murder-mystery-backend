@@ -11,7 +11,8 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(handler(), "/user");
+        registry.addHandler(handler(), "/user")
+                .setAllowedOrigins("*");
     }
 
     @Bean
