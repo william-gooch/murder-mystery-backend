@@ -4,12 +4,22 @@ import '../App.css';
 
 function Deck(props) {
 
+  useEffect(() => {
+    let timer1 = setTimeout(() =>  props.dispatch("START_GAME", { }), 5 * 1000);
+
+      return () => {
+        clearTimeout(timer1);
+      };
+  }, [props.dispatch])
+
   return (
     <div >
       <h2>{props.name}'s Deck</h2>
-      {props.state?.me?.deck?.map?.(card => (
-        <Card state={props.state} dispatch={props.dispatch} {...card} />
-      ))}
+      <div className="deck">
+        {props.state?.me?.deck?.map?.(card => (
+          <Card state={props.state} dispatch={props.dispatch} {...card} />
+        ))}
+      </div>
     </div>
   );
 }

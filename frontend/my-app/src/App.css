@@ -79,3 +79,9 @@ body, html{height:100%}
 .col1 {
   border-right: solid 5px black;
 }
+
+.deck {
+  display: flex;
+  gap: 10px;
+
+}
