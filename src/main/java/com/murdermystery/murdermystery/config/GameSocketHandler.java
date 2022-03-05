@@ -16,15 +16,12 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 public class GameSocketHandler extends TextWebSocketHandler {
 
     GameState game;
-    Chat chat;
 
     public GameSocketHandler() {
         this.game = new GameState();
-        this.chat = new Chat();
     }
 
     public void afterConnectionEstablished(WebSocketSession session) throws IOException {
-        this.chat.addListener(() -> this.sendChatUpdate(session));
         this.game.addListener(() -> this.sendUpdate(session));
         this.game.addPlayer(session.getId());
         game.onUpdate();
@@ -51,8 +48,8 @@ public class GameSocketHandler extends TextWebSocketHandler {
     }
 
     public void sendMessage(WebSocketSession session, String message) throws IOException {
-        chat.sendMessage(message, game.getPlayers().get(session.getId()));
-        chat.onUpdate();
+        game.getChat().sendMessage(message, game.getPlayers().get(session.getId()));
+        game.getChat().onUpdate();
     }
 
     public void sendUpdate(WebSocketSession session) {
@@ -61,18 +58,6 @@ public class GameSocketHandler extends TextWebSocketHandler {
             JSONObject toSend = new JSONObject();
             toSend.put("event", "UPDATE");
             toSend.put("state", gameObj);
-            session.sendMessage(new TextMessage(toSend.toString()));
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-        }
-    }
-
-    public void sendChatUpdate(WebSocketSession session) {
-        try {
-            JSONObject chatObj = new JSONObject(chat);
-            JSONObject toSend = new JSONObject();
-            toSend.put("event", "CHAT");
-            toSend.put("chat", chatObj);
             session.sendMessage(new TextMessage(toSend.toString()));
         } catch (IOException e) {
             System.err.println(e.getMessage());

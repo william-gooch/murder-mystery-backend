@@ -7,10 +7,10 @@ function GameChat(props) {
   return (
     <div >
       
-      {props.state && props.state.messages &&
-        props.state.messages.map((item) => (
+      {props.state && props.state.chat && props.state.chat.messages &&
+        props.state.chat.messages.map((item) => (
         <>
-          {item.text}
+          {item.message}
         </>
       ))}
       <SendMessage state={props.state} dispatch={props.dispatch}/>

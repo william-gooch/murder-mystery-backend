@@ -1,29 +1,31 @@
 import React, { useEffect, useState } from 'react';
 
 function useWebsocket() {
+    const [socket, setSocket] = useState();
     const [state, setState] = useState();
-    const [chat, setChat] = useState();
-    
-    const socket = new WebSocket("wss://javascript.info/article/websocket/chat/ws");
 
     useEffect(() => {
+        const socket = new WebSocket("ws://localhost:3456/ws");
+
         socket.onopen = function(e) {
             console.log("[open] Connection established");
         };
 
         socket.onmessage = ({ data }) => {
-            switch(data.event) {
-                case "UPDATE": setState(data.state);
+            const { event, state } = JSON.parse(data);
+            switch(event) {
+                case "UPDATE": setState(state);
                     return;
-                case "CHAT": setChat(data.chat);
-                    return;
+                default: return;
             }
         };
+        
+        setSocket(socket);
     }, []);
 
-    const sendEvent = function (event_name, args) {
+    const sendEvent = React.useCallback(function (event_name, args) {
         socket.send(JSON.stringify({ event: event_name, ...args }))
-    };
+    }, [socket]);
 
     return [state, sendEvent];
 }

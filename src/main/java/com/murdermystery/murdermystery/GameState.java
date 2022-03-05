@@ -12,6 +12,8 @@ public class GameState {
     private static final int TEST_DECK = 50; // allows the deck to be created for now
     private static final String TEST_NAME = "amogus"; // allows Person objects to be created for now
 
+    private Chat chat;
+
     private HashMap<String, Player> idPlayers;
     private ArrayList<Card> activePile;
     private ArrayList<Card> discardPile;
@@ -23,6 +25,8 @@ public class GameState {
     public GameState() {
         this.idPlayers = new HashMap<String, Player>();
         this.listeners = new ArrayList<>();
+        this.chat = new Chat();
+        this.chat.addListener(this::onUpdate);
     }
 
     public void addListener(Listener listener) {
@@ -80,6 +84,10 @@ public class GameState {
 
     public HashMap<String, Player> getPlayers() {
         return idPlayers;
+    }
+
+    public Chat getChat() {
+        return chat;
     }
 
     public void addPlayer(String id) {
