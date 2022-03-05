@@ -18,7 +18,6 @@ public class GameSocketHandler extends TextWebSocketHandler {
 
     public GameSocketHandler() {
         this.game = new GameState();
-        game.initGame(game.getPlayers().size());
     }
 
     public void afterConnectionEstablished(WebSocketSession session) throws IOException {
@@ -63,7 +62,6 @@ public class GameSocketHandler extends TextWebSocketHandler {
     }
 
     public void startGame(WebSocketSession session) {
-        game.shuffleDeck();
         game.initGame(game.getPlayers().size());
         game.onUpdate();
     }

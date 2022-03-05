@@ -8,6 +8,11 @@ public class AccuseCard extends Card {
         desc = "Use this card to make an accusation about the full nature of the murder.";
     }
 
+    @Override
+    public boolean isPlayable() {
+        return true;
+    }
+
     public Boolean accuse(GameState gd, Player userPlayer) {
         if (userPlayer.getIsAlive() == false) {
             return false;

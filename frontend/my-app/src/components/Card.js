@@ -12,7 +12,6 @@ function Card(props) {
 
   return (
     <div>
-
       <BCard style={{ width: "8rem", boxShadow: "0px 3px 8px -4px #000000" }}>
         <BCard.Img variant="top" src="holder.js/100px180" />
         <BCard.Body>
@@ -20,7 +19,7 @@ function Card(props) {
           <BCard.Text>
             {props.desc}
           </BCard.Text>
-          <Button variant="primary">Play</Button>
+          {props.playable && <Button variant="primary">Play</Button>}
         </BCard.Body>
       </BCard>
     </div>

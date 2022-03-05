@@ -7,7 +7,9 @@ function Deck(props) {
   return (
     <div >
       <h2>{props.name}'s Deck</h2>
-      <Card name="test" desc="test2" />
+      {props.state?.me?.deck?.map?.(card => (
+        <Card {...card} />
+      ))}
     </div>
   );
 }

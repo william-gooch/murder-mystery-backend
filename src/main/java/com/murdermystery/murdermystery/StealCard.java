@@ -8,6 +8,11 @@ public class StealCard extends Card {
         desc = "Allows the player to steal a card from another player";
     }
 
+    @Override
+    public boolean isPlayable() {
+        return true;
+    }
+
     public Boolean steal(Boolean isDay, Player stealer, Player victim, int toSteal) {
         if (isDay == true) {
             return false;

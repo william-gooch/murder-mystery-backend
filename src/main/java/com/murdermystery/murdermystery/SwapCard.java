@@ -10,6 +10,11 @@ public class SwapCard extends Card {
         desc = "Use this to swap one card with another player";
     }
 
+    @Override
+    public boolean isPlayable() {
+        return true;
+    }
+
     public Boolean swap(Player userPlayer, Player otherPlayer, Card userCard, Card targetCard,
             GameState gd) {
         // lists

@@ -12,6 +12,11 @@ public class FavourCard extends Card {
         desc = "Allows another player to give a card of their choice to the user";
     }
 
+    @Override
+    public boolean isPlayable() {
+        return true;
+    }
+
     public Boolean favour(GameState gd, Player userPlayer) {
         if (gd.getDay() == false) {
             return false;
