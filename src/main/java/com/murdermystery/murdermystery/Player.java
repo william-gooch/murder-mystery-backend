@@ -8,11 +8,17 @@ public class Player {
     private String name;
     private ArrayList<Card> deck;
     private Boolean isMurderer;
+    private Boolean isAlive;
 
     public Player(String name) {
         this.name = name;
         this.deck = deck;
         this.isMurderer = false;
+        this.isAlive = true;
+    }
+
+    public Boolean getIsAlive() {
+        return this.isAlive;
     }
 
     public ArrayList<Card> getDeck() {
@@ -33,6 +39,10 @@ public class Player {
 
     public void setIsMurderer(Boolean bool) {
         this.isMurderer = bool;
+    }
+
+    public void setIsAlive(Boolean bool) {
+        this.isAlive = bool;
     }
 
     public Card getCard(int id) {

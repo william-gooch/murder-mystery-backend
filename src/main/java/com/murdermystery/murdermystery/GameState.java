@@ -16,11 +16,13 @@ public class GameState {
     private ArrayList<Card> discardPile;
     private int initHand;
     private int turn;
+    private Boolean isDay;
 
     public void GameState() {
         this.idPlayers = new HashMap<String,Player>();
         this.initHand = 3;
         this.turn = 0;
+        this.isDay = true;
     }
 
     // TO DO
@@ -30,7 +32,7 @@ public class GameState {
 
     public void initGame(int noPlayers) {
         // use below to find murderer
-        int randomNum = ThreadLocalRandom.current().nextInt(0, noPlayers);  //https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
+        int randomNum = randomFromRange(0, noPlayers);  //https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
         int counter = 0;
         //initialise every player
         for (Player player : idPlayers.values()) {
@@ -63,7 +65,7 @@ public class GameState {
         return idPlayers;
     }
 
-    public void setPlayer(String id, String name) {
+    public void addPlayer(String id, String name) {
         Player newPlayer = new Player(name);
         idPlayers.put(id, newPlayer);
     }
@@ -79,6 +81,15 @@ public class GameState {
         Card ret = activePile.get(size);
         activePile.remove(size);
         return ret;
+    }
+
+    // inclusive min, exclusive max
+    public int randomFromRange(int min, int max) {
+        return ThreadLocalRandom.current().nextInt(min, max);
+    }
+
+    public void changeDay() {
+        this.isDay = !this.isDay;
     }
 
 }   
