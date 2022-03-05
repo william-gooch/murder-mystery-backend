@@ -1,8 +1,8 @@
 package com.murdermystery.murdermystery;
 
-public class TimeCard {
+public class TimeCard extends EvidenceCard {
     
-    public TimeCard(int id, String desc) {
-        super(id, desc);
+    public TimeCard(int id, String name, String desc) {
+        super(id, name, desc);
     }
 }
