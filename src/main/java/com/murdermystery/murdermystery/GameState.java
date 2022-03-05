@@ -56,7 +56,7 @@ public class GameState {
 
     public void initGame(int noPlayers) {
         // use below to find murderer
-        int randomNum = randomFromRange(0, noPlayers); // https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
+        int randomNum = randomFromRange(0, noPlayers);  //https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
         int counter = 0;
         // initialise every player
         for (Player player : idPlayers.values()) {
@@ -117,8 +117,12 @@ public class GameState {
         return ThreadLocalRandom.current().nextInt(min, max);
     }
 
+    public Boolean getDay() {
+        return this.isDay;
+    }
+
     public void changeDay() {
         this.isDay = !this.isDay;
     }
 
-}
+}   

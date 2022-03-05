@@ -12,6 +12,7 @@ public class saveKillCard extends Card{
         else if (victim.equals(safe)) {
             return false;
         }
+        toKill.setIsAlive(false);
         return true;
     }
 

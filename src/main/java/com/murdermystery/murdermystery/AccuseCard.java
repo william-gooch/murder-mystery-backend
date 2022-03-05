@@ -5,7 +5,12 @@ public class AccuseCard extends Card {
         this.id = id;
         desc = "Use this card to make an accusation about the full nature of the murder.";
     }
-    public GameState accuse(GameState gd, Player userPlayer, Card accuseCard) {
-        return gd;
+    
+    public Boolean accuse(Player userPlayer, Card accuseCard) {
+        if (userPlayer.getIsAlive() == false) {
+            return false;
+        }
+        userPlayer.removeCard(userPlayer.getDeck(), accuseCard);
+        return true;
     }
 }

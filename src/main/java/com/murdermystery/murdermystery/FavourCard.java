@@ -9,7 +9,10 @@ public class FavourCard extends Card {
         desc = "Allows another player to give a card of their choice to the user";
     }
 
-    public GameState favour(GameState gd, Player userPlayer, Player otherPlayer, Card favourCard, Card targetCard) {
+    public Boolean favour(GameState gd, Player userPlayer, Player otherPlayer, Card favourCard, Card targetCard) {
+        if (gd.getDay() == false) {
+            return false;
+        }
         Map<String, Player> players = gd.getPlayers();
         List<Player> playerList = new ArrayList<>(players.values());
         ArrayList<Card> userDeck = userPlayer.getDeck();
@@ -27,6 +30,6 @@ public class FavourCard extends Card {
         } else {
             // will bring up error
         }
-        return gd;
+        return true;
     }
 }

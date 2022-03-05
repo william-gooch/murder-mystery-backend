@@ -9,16 +9,22 @@ public class Player {
     private ArrayList<Card> deck;
     private Boolean isMurderer;
     private Boolean isAlive;
+    private Boolean turnDone;
 
     public Player(String name) {
         this.name = name;
         this.deck = new ArrayList<Card>();
         this.isMurderer = false;
         this.isAlive = true;
+        this.turnDone = false;
     }
 
     public Boolean getIsAlive() {
         return this.isAlive;
+    }
+
+    public Boolean getTurnDone() {
+        return this.turnDone;
     }
 
     public ArrayList<Card> getDeck() {
@@ -49,14 +55,9 @@ public class Player {
         this.isAlive = bool;
     }
 
-    /*public Card getCard(int id) {
-        for (int i = 0; i < deck.size(); i++) {
-            if (deck.get(i).getID() == id) {
-                return deck.get(i);
-            }
-        }
-        return null;
-    }*/
+    public void setTurnDone(Boolean bool) {
+        this.turnDone = bool;
+    }
 
     public ArrayList<Card> removeCard(ArrayList<Card> deck, Card removedCard) {
         if (deck.contains(removedCard)) {
