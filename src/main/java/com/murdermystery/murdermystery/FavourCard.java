@@ -4,10 +4,15 @@ import java.util.*;
 
 public class FavourCard extends Card {
 
+<<<<<<< HEAD
     public Boolean favour(GameState gd, Player userPlayer, Player otherPlayer, Card favourCard, Card targetCard) {
         if (gd.getisDay == false) {
             return false;
         }
+=======
+    public GameState favour(GameState gd, Player userPlayer, Player otherPlayer, Card targetCard) {
+
+>>>>>>> 174c9c573ecac5bd8a6e3f77c3e2d38ae51c407b
         Map<String, Player> players = gd.getPlayers();
         List<Player> playerList = new ArrayList<>(players.values());
         ArrayList<Card> userDeck = userPlayer.getDeck();
@@ -16,7 +21,7 @@ public class FavourCard extends Card {
         // validation and favouring
         if (playerList.contains(userPlayer) && playerList.contains(otherPlayer)
                 && otherDeck.contains(targetCard)) {
-            userDeck.remove(favourCard);
+            userDeck.remove(this);
             otherDeck.remove(targetCard);
             userDeck.add(targetCard);
 

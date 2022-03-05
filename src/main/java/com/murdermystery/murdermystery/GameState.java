@@ -25,6 +25,8 @@ public class GameState {
 
     public GameState() {
         this.idPlayers = new HashMap<String, Player>();
+        this.activePile = new ArrayList<>();
+        this.discardPile = new ArrayList<>();
         this.listeners = new ArrayList<>();
         this.chat = new Chat();
         this.chat.addListener(this::onUpdate);

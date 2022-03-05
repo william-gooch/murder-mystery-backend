@@ -9,6 +9,7 @@ function SendMessage(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     props.dispatch("SEND_CHAT_MESSAGE", { message: msg });
+    setMsg("");
   }
 
   return (
