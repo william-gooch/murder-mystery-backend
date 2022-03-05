@@ -1,5 +1,5 @@
-import com.murdermystery.murdermystery;
+package com.murdermystery.murdermystery;
 
-public class RoleCard {
+public class RoleCard extends Card {
     
 }

@@ -14,5 +14,9 @@ public class GameState {
             players[i] = new Player(5000+i,TEST_NAME); //will be received from the front end
         }
     }
+
+    public GameState() {
+        
+    }
     
 }

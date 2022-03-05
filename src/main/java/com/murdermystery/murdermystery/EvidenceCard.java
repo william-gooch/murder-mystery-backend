@@ -1,4 +1,4 @@
-import com.murdermystery.murdermystery;
+package com.murdermystery.murdermystery;
 
 public class EvidenceCard extends Card {
     
