@@ -25,6 +25,8 @@ public class GameState {
 
     public GameState() {
         this.idPlayers = new HashMap<String, Player>();
+        this.activePile = new ArrayList<>();
+        this.discardPile = new ArrayList<>();
         this.listeners = new ArrayList<>();
         this.chat = new Chat();
         this.chat.addListener(this::onUpdate);
@@ -54,11 +56,7 @@ public class GameState {
 
     public void initGame(int noPlayers) {
         // use below to find murderer
-<<<<<<< HEAD
-        int randomNum = randomFromRange(0, noPlayers);  //https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
-=======
-        int randomNum = ThreadLocalRandom.current().nextInt(0, noPlayers); // https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
->>>>>>> a8eabf31c344717b5b9ac5b64f08f8622ab837c2
+        int randomNum = randomFromRange(0, noPlayers); // https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
         int counter = 0;
         // initialise every player
         for (Player player : idPlayers.values()) {
@@ -92,17 +90,12 @@ public class GameState {
         return idPlayers;
     }
 
-<<<<<<< HEAD
-    public void addPlayer(String id, String name) {
-        Player newPlayer = new Player(name);
-=======
     public Chat getChat() {
         return chat;
     }
 
     public void addPlayer(String id) {
         Player newPlayer = new Player("Unnamed");
->>>>>>> a8eabf31c344717b5b9ac5b64f08f8622ab837c2
         idPlayers.put(id, newPlayer);
     }
 
@@ -119,7 +112,6 @@ public class GameState {
         return ret;
     }
 
-<<<<<<< HEAD
     // inclusive min, exclusive max
     public int randomFromRange(int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max);
@@ -129,7 +121,4 @@ public class GameState {
         this.isDay = !this.isDay;
     }
 
-}   
-=======
 }
->>>>>>> a8eabf31c344717b5b9ac5b64f08f8622ab837c2

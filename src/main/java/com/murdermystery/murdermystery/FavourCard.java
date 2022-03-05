@@ -4,7 +4,7 @@ import java.util.*;
 
 public class FavourCard extends Card {
 
-    public GameState favour(GameState gd, Player userPlayer, Player otherPlayer, Card favourCard, Card targetCard) {
+    public GameState favour(GameState gd, Player userPlayer, Player otherPlayer, Card targetCard) {
 
         Map<String, Player> players = gd.getPlayers();
         List<Player> playerList = new ArrayList<>(players.values());
@@ -14,7 +14,7 @@ public class FavourCard extends Card {
         // validation and favouring
         if (playerList.contains(userPlayer) && playerList.contains(otherPlayer)
                 && otherDeck.contains(targetCard)) {
-            userDeck.remove(favourCard);
+            userDeck.remove(this);
             otherDeck.remove(targetCard);
             userDeck.add(targetCard);
 
