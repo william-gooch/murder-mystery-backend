@@ -63,6 +63,7 @@ public class GameState {
     }
 
     public void initGame(int noPlayers) {
+        initDeck();
         // use below to find murderer
         int randomNum = randomFromRange(0, noPlayers); // https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
         int counter = 0;
