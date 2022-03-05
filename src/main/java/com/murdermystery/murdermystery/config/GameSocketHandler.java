@@ -23,6 +23,7 @@ public class GameSocketHandler extends TextWebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) throws IOException {
         this.game.addListener(() -> this.sendUpdate(session));
         this.game.addPlayer(session.getId());
+        game.onUpdate();
     }
 
     @Override
@@ -39,12 +40,15 @@ public class GameSocketHandler extends TextWebSocketHandler {
 
     public void setName(WebSocketSession session, String newName) throws IOException {
         game.getPlayers().get(session.getId()).setName(newName);
-        sendUpdate(session);
+        game.onUpdate();
     }
 
     public void sendUpdate(WebSocketSession session) {
         try {
-            JSONObject toSend = new JSONObject(game);
+            JSONObject gameObj = new JSONObject(game);
+            JSONObject toSend = new JSONObject();
+            toSend.put("event", "UPDATE");
+            toSend.put("state", gameObj);
             session.sendMessage(new TextMessage(toSend.toString()));
         } catch (IOException e) {
             System.err.println(e.getMessage());

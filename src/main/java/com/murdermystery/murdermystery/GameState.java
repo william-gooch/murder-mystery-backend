@@ -29,7 +29,7 @@ public class GameState {
         this.listeners.add(listener);
     }
 
-    private void onUpdate() {
+    public void onUpdate() {
         for (Listener listener : this.listeners) {
             listener.onUpdate();
         }
@@ -64,7 +64,6 @@ public class GameState {
         }
 
         // deal cards to players
-        onUpdate();
     }
 
     // https://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
@@ -77,7 +76,6 @@ public class GameState {
             this.activePile.set(index, this.activePile.get(i));
             this.activePile.set(i, a);
         }
-        onUpdate();
     }
 
     public HashMap<String, Player> getPlayers() {
@@ -87,7 +85,6 @@ public class GameState {
     public void addPlayer(String id) {
         Player newPlayer = new Player("Unnamed");
         idPlayers.put(id, newPlayer);
-        onUpdate();
     }
 
     public Card drawCard() {
