@@ -8,6 +8,8 @@ public class GameState {
     private Player[] players;
     private Card[] fullDeck = new Card[TEST_DECK];
 
+
+
     public GameState(int noPlayers) { //will be received from the front end
         players = new Player[noPlayers];
         for(int i = 0; i < players.length; i++) {
@@ -17,6 +19,14 @@ public class GameState {
 
     public GameState() {
         
+    }    
+    
+    public Player[] getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(Player[] players) {
+        this.players = players;
     }
     
 }

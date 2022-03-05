@@ -1,14 +1,14 @@
 package com.murdermystery.murdermystery;
 
 public class Card {
-    String id;
+    int id;
     String desc;
 
-    String getID() {
+    int getID() {
         return id;
     }
 
-    void setID(String id) {
+    void setID(int id) {
         this.id = id;
     }
 
