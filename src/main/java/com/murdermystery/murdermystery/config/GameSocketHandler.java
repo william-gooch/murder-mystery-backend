@@ -18,6 +18,7 @@ public class GameSocketHandler extends TextWebSocketHandler {
 
     public GameSocketHandler() {
         this.game = new GameState();
+        game.initGame(game.getPlayers().size());
     }
 
     public void afterConnectionEstablished(WebSocketSession session) throws IOException {

@@ -36,6 +36,9 @@ public class GameState {
         this.listeners = new ArrayList<>();
         this.chat = new Chat();
         this.chat.addListener(this::onUpdate);
+        this.initHand = 3;
+        this.turn = 0;
+        this.isDay = true;
     }
 
     public void addListener(Listener listener) {
@@ -46,13 +49,6 @@ public class GameState {
         for (Listener listener : this.listeners) {
             listener.onUpdate();
         }
-    }
-
-    public void GameState() {
-        this.idPlayers = new HashMap<String, Player>();
-        this.initHand = 3;
-        this.turn = 0;
-        this.isDay = true;
     }
 
     // TO DO
