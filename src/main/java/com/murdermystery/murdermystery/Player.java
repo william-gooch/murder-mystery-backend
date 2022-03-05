@@ -11,7 +11,19 @@ public class Player {
     public Player(String name) {
         this.name = name;
         this.deck = deck;
+<<<<<<< HEAD
         this.isMurderer = false;
+=======
+        this.isMurderer = isMurderer;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+>>>>>>> a65e97fc02cfd42574f6ac824156f313c6cc1d95
     }
 
     public ArrayList<Card> getDeck() {
