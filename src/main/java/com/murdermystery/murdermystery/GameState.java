@@ -43,4 +43,6 @@ public class GameState {
             int a = fullDeck[index];
             fullDeck[index] = fullDeck[i];
             fullDeck[i] = a;
-  
+        }
+    }
+}   
