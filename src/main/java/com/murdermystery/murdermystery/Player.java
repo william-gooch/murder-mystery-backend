@@ -11,7 +11,7 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
-        this.deck = deck;
+        this.deck = new ArrayList<Card>();
         this.isMurderer = false;
     }
 
@@ -29,6 +29,10 @@ public class Player {
 
     public void setDeck(ArrayList<Card> deck) {
         this.deck = deck;
+    }
+
+    public void setName(String newName) {
+        this.name = newName;
     }
 
     public void setIsMurderer(Boolean bool) {

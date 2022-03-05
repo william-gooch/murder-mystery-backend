@@ -16,8 +16,21 @@ public class GameState {
     private int deckPointer = TEST_DECK - 1;
     private int initHand = 3;
 
-    public void GameState() {
+    public List<Listener> listeners;
+
+    public GameState() {
         this.idPlayers = new HashMap<String, Player>();
+        this.listeners = new ArrayList<>();
+    }
+
+    public void addListener(Listener listener) {
+        this.listeners.add(listener);
+    }
+
+    private void onUpdate() {
+        for (Listener listener : this.listeners) {
+            listener.onUpdate();
+        }
     }
 
     public void initGame(int noPlayers) {
@@ -39,6 +52,7 @@ public class GameState {
         }
 
         // deal cards to players
+        onUpdate();
     }
 
     // //https://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
@@ -51,14 +65,16 @@ public class GameState {
             this.fullDeck[index] = this.fullDeck[i];
             this.fullDeck[i] = a;
         }
+        onUpdate();
     }
 
     public Map<String, Player> getPlayers() {
         return idPlayers;
     }
 
-    public void setPlayer(String id, String name) {
-        Player newPlayer = new Player(name);
+    public void addPlayer(String id) {
+        Player newPlayer = new Player("Unnamed");
         idPlayers.put(id, newPlayer);
+        onUpdate();
     }
 }

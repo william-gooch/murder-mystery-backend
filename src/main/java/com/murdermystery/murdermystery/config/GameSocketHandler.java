@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import com.murdermystery.murdermystery.GameState;
-import com.murdermystery.murdermystery.Player;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
@@ -22,9 +21,8 @@ public class GameSocketHandler extends TextWebSocketHandler {
     }
 
     public void afterConnectionEstablished(WebSocketSession session) throws IOException {
-        // add player to game
-        JSONObject toSend = new JSONObject(game);
-        session.sendMessage(new TextMessage(toSend.toString()));
+        this.game.addListener(() -> this.sendUpdate(session));
+        this.game.addPlayer(session.getId());
     }
 
     @Override
@@ -39,7 +37,17 @@ public class GameSocketHandler extends TextWebSocketHandler {
         }
     }
 
-    public void setName(WebSocketSession session, String gameId) throws IOException {
-        // set player name
+    public void setName(WebSocketSession session, String newName) throws IOException {
+        game.getPlayers().get(session.getId()).setName(newName);
+        sendUpdate(session);
+    }
+
+    public void sendUpdate(WebSocketSession session) {
+        try {
+            JSONObject toSend = new JSONObject(game);
+            session.sendMessage(new TextMessage(toSend.toString()));
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }
