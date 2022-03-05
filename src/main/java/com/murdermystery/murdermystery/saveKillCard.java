@@ -1,6 +1,11 @@
 package com.murdermystery.murdermystery;
 
 public class saveKillCard extends Card{
+    public saveKillCard(int id) {
+        this.id = id;
+        name = "Save/Kill Card";
+        desc = "Can protect a player from certain death, or allow the murderer a kill at nightfall";
+    }
 
     public Boolean kill (Player killer, Player toKill, Player saved) {
         String murderer = killer.getName();

@@ -6,6 +6,7 @@ import java.util.*;
 public class SwapCard extends Card {
     public SwapCard(int id) {
         this.id = id;
+        name = "Swap Card";
         desc = "Use this to swap one card with another player";
     }
 
