@@ -1,3 +1,5 @@
+import com.murdermystery.murdermystery;
+
 public class Card {
     String id;
     String desc;

@@ -2,7 +2,7 @@ package com.murdermystery.murdermystery;
 
 public class GameState {
 
-    private static final int TEST_DECK = 50 //allows the deck to be created for now
+    private static final int TEST_DECK = 50; //allows the deck to be created for now
     private Player[] players;
     private Cards[] fullDeck = new Cards[TEST_DECK];
 

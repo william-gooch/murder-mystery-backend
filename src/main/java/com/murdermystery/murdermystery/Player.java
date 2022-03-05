@@ -1,3 +1,5 @@
+package com.murdermystery.murdermystery;
+
 public class Player {
 
     private int id;
