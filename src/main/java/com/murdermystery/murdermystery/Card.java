@@ -4,19 +4,19 @@ public class Card {
     int id;
     String desc;
 
-    int getID() {
+    public int getID() {
         return id;
     }
 
-    void setID(int id) {
+    public void setID(int id) {
         this.id = id;
     }
 
-    String getDesc() {
+    public String getDesc() {
         return desc;
     }
 
-    void setDesc(String desc) {
+    public void setDesc(String desc) {
         this.desc = desc;
     }
 }

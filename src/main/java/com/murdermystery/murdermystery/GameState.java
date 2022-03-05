@@ -1,13 +1,15 @@
 package com.murdermystery.murdermystery;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.*;
+import java.util.Map.Entry;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.murdermystery.murdermystery.Player;
 
 public class GameState {
 
-     private static final int TEST_DECK = 50; //allows the deck to be created for now
-     private static final String TEST_NAME = "amogus"; //allows Person objects to be created for now
+    private static final int TEST_DECK = 50; // allows the deck to be created for now
+    private static final String TEST_NAME = "amogus"; // allows Person objects to be created for now
 
     private HashMap<String,Player> idPlayers;
     private ArrayList<Card> activePile;
@@ -36,14 +38,14 @@ public class GameState {
              if (counter == randomNum) {
                 player.setIsMurderer(true);
             }
-            //give the player their hand
+            // give the player their hand
             for (int j = 0; j < initHand; j++) {
                 player.addCard(drawCard());
             }   
             counter++;
         }
 
-        //deal cards to players
+        // deal cards to players
     }
     //https://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
     public void shuffleDeck() {
@@ -57,7 +59,7 @@ public class GameState {
         }
     }
     
-    public idPlayers getPlayers() {
+    public HashMap<String, Player> getPlayers() {
         return idPlayers;
     }
 
