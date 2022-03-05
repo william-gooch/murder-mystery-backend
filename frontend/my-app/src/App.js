@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import CreateName from './components/CreateName';
 import TutorialPopup from './components/TutorialPopup';
 import useWebsocket from './useWebsocket';
+import PlayerList from './components/PlayerList';
 
 
 function App() {
@@ -47,7 +48,9 @@ function App() {
           </Col>
           <Col xs={4}>
             <h2>Players</h2>
+            <PlayerList state={state} />
             <TutorialPopup setTutOpen={setTutOpen} />
+            
           </Col>
         </Row>
         <Row className="row2">

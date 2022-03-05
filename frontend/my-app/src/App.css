@@ -29,6 +29,35 @@
 .sendMessage {
   bottom: 0;
 }
+body, html{height:100%}
+
+.test {
+  height: 80%;
+}
+.chat {
+  height: 100%;
+  width: 100%;
+}
+
+.chatBox {
+  
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.playerBox {
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+}
+
+.message {
+  margin: 3px;
+  padding: 5px;
+  text-align: left;
+  float: left;
+  width: 90%;
+}
 
 .row1 {
   height: 60vh;
