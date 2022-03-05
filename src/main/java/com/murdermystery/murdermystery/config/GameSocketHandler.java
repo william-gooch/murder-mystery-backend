@@ -3,8 +3,8 @@ package com.murdermystery.murdermystery.config;
 import java.io.IOException;
 import java.util.HashMap;
 
+import com.murdermystery.murdermystery.Chat;
 import com.murdermystery.murdermystery.GameState;
-import com.murdermystery.murdermystery.Player;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
@@ -22,9 +22,9 @@ public class GameSocketHandler extends TextWebSocketHandler {
     }
 
     public void afterConnectionEstablished(WebSocketSession session) throws IOException {
-        // add player to game
-        JSONObject toSend = new JSONObject(game);
-        session.sendMessage(new TextMessage(toSend.toString()));
+        this.game.addListener(() -> this.sendUpdate(session));
+        this.game.addPlayer(session.getId());
+        game.onUpdate();
     }
 
     @Override
@@ -36,10 +36,31 @@ public class GameSocketHandler extends TextWebSocketHandler {
             case "SET_NAME":
                 this.setName(session, jsonObject.get("name").toString());
                 return;
+            case "SEND_CHAT_MESSAGE":
+                this.sendMessage(session, jsonObject.get("message").toString());
+                return;
         }
     }
 
-    public void setName(WebSocketSession session, String gameId) throws IOException {
-        // set player name
+    public void setName(WebSocketSession session, String newName) throws IOException {
+        game.getPlayers().get(session.getId()).setName(newName);
+        game.onUpdate();
+    }
+
+    public void sendMessage(WebSocketSession session, String message) throws IOException {
+        game.getChat().sendMessage(message, game.getPlayers().get(session.getId()));
+        game.getChat().onUpdate();
+    }
+
+    public void sendUpdate(WebSocketSession session) {
+        try {
+            JSONObject gameObj = new JSONObject(game);
+            JSONObject toSend = new JSONObject();
+            toSend.put("event", "UPDATE");
+            toSend.put("state", gameObj);
+            session.sendMessage(new TextMessage(toSend.toString()));
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }

@@ -1,4 +1,5 @@
 package com.murdermystery.murdermystery;
+
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.*;
 import java.util.Map.Entry;
@@ -11,15 +12,36 @@ public class GameState {
     private static final int TEST_DECK = 50; // allows the deck to be created for now
     private static final String TEST_NAME = "amogus"; // allows Person objects to be created for now
 
-    private HashMap<String,Player> idPlayers;
+    private Chat chat;
+
+    private HashMap<String, Player> idPlayers;
     private ArrayList<Card> activePile;
     private ArrayList<Card> discardPile;
     private int initHand;
     private int turn;
     private Boolean isDay;
 
+    private List<Listener> listeners;
+
+    public GameState() {
+        this.idPlayers = new HashMap<String, Player>();
+        this.listeners = new ArrayList<>();
+        this.chat = new Chat();
+        this.chat.addListener(this::onUpdate);
+    }
+
+    public void addListener(Listener listener) {
+        this.listeners.add(listener);
+    }
+
+    public void onUpdate() {
+        for (Listener listener : this.listeners) {
+            listener.onUpdate();
+        }
+    }
+
     public void GameState() {
-        this.idPlayers = new HashMap<String,Player>();
+        this.idPlayers = new HashMap<String, Player>();
         this.initHand = 3;
         this.turn = 0;
         this.isDay = true;
@@ -32,24 +54,29 @@ public class GameState {
 
     public void initGame(int noPlayers) {
         // use below to find murderer
+<<<<<<< HEAD
         int randomNum = randomFromRange(0, noPlayers);  //https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
+=======
+        int randomNum = ThreadLocalRandom.current().nextInt(0, noPlayers); // https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
+>>>>>>> a8eabf31c344717b5b9ac5b64f08f8622ab837c2
         int counter = 0;
-        //initialise every player
+        // initialise every player
         for (Player player : idPlayers.values()) {
-             //set current player to murderer if they are lucky
-             if (counter == randomNum) {
+            // set current player to murderer if they are lucky
+            if (counter == randomNum) {
                 player.setIsMurderer(true);
             }
             // give the player their hand
             for (int j = 0; j < initHand; j++) {
                 player.addCard(drawCard());
-            }   
+            }
             counter++;
         }
 
         // deal cards to players
     }
-    //https://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
+
+    // https://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
     public void shuffleDeck() {
         Random rnd = ThreadLocalRandom.current();
         for (int i = activePile.size() - 1; i > 0; i--) {
@@ -60,19 +87,28 @@ public class GameState {
             this.activePile.set(i, a);
         }
     }
-    
+
     public HashMap<String, Player> getPlayers() {
         return idPlayers;
     }
 
+<<<<<<< HEAD
     public void addPlayer(String id, String name) {
         Player newPlayer = new Player(name);
+=======
+    public Chat getChat() {
+        return chat;
+    }
+
+    public void addPlayer(String id) {
+        Player newPlayer = new Player("Unnamed");
+>>>>>>> a8eabf31c344717b5b9ac5b64f08f8622ab837c2
         idPlayers.put(id, newPlayer);
     }
 
     public Card drawCard() {
         int size = this.activePile.size() - 1;
-        
+
         // if the deck empties, replace it with the discard pile
         if (size == 0) {
             activePile = discardPile;
@@ -83,6 +119,7 @@ public class GameState {
         return ret;
     }
 
+<<<<<<< HEAD
     // inclusive min, exclusive max
     public int randomFromRange(int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max);
@@ -93,3 +130,6 @@ public class GameState {
     }
 
 }   
+=======
+}
+>>>>>>> a8eabf31c344717b5b9ac5b64f08f8622ab837c2
