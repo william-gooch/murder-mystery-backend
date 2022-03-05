@@ -7,6 +7,7 @@ import java.util.function.Function;
 import java.util.*;
 import java.util.Map.Entry;
 
+import com.murdermystery.murdermystery.Card;
 import com.murdermystery.murdermystery.Player;
 
 import org.springframework.expression.spel.ast.Selection;
@@ -31,7 +32,6 @@ public class GameState {
 
     public GameState() {
         this.idPlayers = new HashMap<String, Player>();
-        this.activePile = new ArrayList<>();
         this.discardPile = new ArrayList<>();
         this.listeners = new ArrayList<>();
         this.chat = new Chat();
@@ -53,7 +53,9 @@ public class GameState {
 
     // TO DO
     public void initDeck() {
-
+        Card[] deck = Card.getDeck();
+        this.activePile = new ArrayList<Card>(Arrays.asList(deck));
+        shuffleDeck();
     }
 
     public void initGame(int noPlayers) {
