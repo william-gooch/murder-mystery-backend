@@ -4,7 +4,11 @@ import java.util.Arrays;
 import java.util.*;
 
 public class SwapCard extends Card {
-    
+    public SwapCard(int id) {
+        this.id = id;
+        desc = "Use this to swap one card with another player";
+    }
+
     public GameState swap(Player userPlayer, Player otherPlayer, Card swapCard, Card userCard, Card targetCard, GameState gd) {
         //lists
         Player[] players = gd.getPlayers();

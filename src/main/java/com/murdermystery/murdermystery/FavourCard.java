@@ -4,6 +4,11 @@ import java.util.*;
 
 public class FavourCard extends Card {
     
+    public FavourCard(int id) {
+        this.id = id;
+        desc = "Allows another player to give a card of their choice to the user";
+    }
+
     public GameState favour(GameState gd, Player userPlayer, Player otherPlayer, Card favourCard, Card targetCard) {
 
         Player[] players = gd.getPlayers();
