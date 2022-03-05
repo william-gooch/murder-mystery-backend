@@ -4,8 +4,10 @@ import java.util.*;
 
 public class FavourCard extends Card {
 
-    public GameState favour(GameState gd, Player userPlayer, Player otherPlayer, Card favourCard, Card targetCard) {
-
+    public Boolean favour(GameState gd, Player userPlayer, Player otherPlayer, Card favourCard, Card targetCard) {
+        if (gd.getisDay == false) {
+            return false;
+        }
         Map<String, Player> players = gd.getPlayers();
         List<Player> playerList = new ArrayList<>(players.values());
         ArrayList<Card> userDeck = userPlayer.getDeck();
@@ -23,6 +25,6 @@ public class FavourCard extends Card {
         } else {
             // will bring up error
         }
-        return gd;
+        return true;
     }
 }

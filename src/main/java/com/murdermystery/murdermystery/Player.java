@@ -9,16 +9,22 @@ public class Player {
     private ArrayList<Card> deck;
     private Boolean isMurderer;
     private Boolean isAlive;
+    private Boolean turnDone;
 
     public Player(String name) {
         this.name = name;
         this.deck = new ArrayList<Card>();
         this.isMurderer = false;
         this.isAlive = true;
+        this.turnDone = false;
     }
 
     public Boolean getIsAlive() {
         return this.isAlive;
+    }
+
+    public Boolean getTurnDone() {
+        return this.turnDone;
     }
 
     public ArrayList<Card> getDeck() {
@@ -47,6 +53,10 @@ public class Player {
 
     public void setIsAlive(Boolean bool) {
         this.isAlive = bool;
+    }
+
+    public void setTurnDone(Boolean bool) {
+        this.turnDone = bool;
     }
 
     public Card getCard(int id) {

@@ -54,11 +54,7 @@ public class GameState {
 
     public void initGame(int noPlayers) {
         // use below to find murderer
-<<<<<<< HEAD
         int randomNum = randomFromRange(0, noPlayers);  //https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
-=======
-        int randomNum = ThreadLocalRandom.current().nextInt(0, noPlayers); // https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
->>>>>>> a8eabf31c344717b5b9ac5b64f08f8622ab837c2
         int counter = 0;
         // initialise every player
         for (Player player : idPlayers.values()) {
@@ -92,17 +88,12 @@ public class GameState {
         return idPlayers;
     }
 
-<<<<<<< HEAD
-    public void addPlayer(String id, String name) {
-        Player newPlayer = new Player(name);
-=======
     public Chat getChat() {
         return chat;
     }
 
     public void addPlayer(String id) {
         Player newPlayer = new Player("Unnamed");
->>>>>>> a8eabf31c344717b5b9ac5b64f08f8622ab837c2
         idPlayers.put(id, newPlayer);
     }
 
@@ -119,10 +110,13 @@ public class GameState {
         return ret;
     }
 
-<<<<<<< HEAD
     // inclusive min, exclusive max
     public int randomFromRange(int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max);
+    }
+
+    public Boolean getDay() {
+        return this.isDay;
     }
 
     public void changeDay() {
@@ -130,6 +124,3 @@ public class GameState {
     }
 
 }   
-=======
-}
->>>>>>> a8eabf31c344717b5b9ac5b64f08f8622ab837c2
