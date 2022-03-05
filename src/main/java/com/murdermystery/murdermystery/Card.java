@@ -1,7 +1,7 @@
 package com.murdermystery.murdermystery;
 
 public class Card {
-    public static Card[] initial_deck = {
+    public static final Card[] initialDeck = {
         new SwapCard(0),
         new SwapCard(1),
         new SwapCard(2),
@@ -83,6 +83,10 @@ public class Card {
 
     public int getID() {
         return id;
+    }
+
+    public static Card[] getDeck() {
+        return initialDeck;
     }
 
     public void setID(int id) {
