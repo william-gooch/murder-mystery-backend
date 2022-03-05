@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+const ws = new WebSocket('wss://ws58.host.cs.st-andrews.ac.uk/user'); 
+ws.onopen = function () { 
+    // send binary messages
+    ws.send(JSON.stringify({ user: "william" }));     // send text messages
+}
+ws.onclose = function () {
+    // handle disconnect
+}
+ws.onmessage = function(msg) { 
+    alert(msg.data)
+}
+ws.onerror = function (error) {
+    // handle errors
+}
+    </script>
+</body>
+</html>
