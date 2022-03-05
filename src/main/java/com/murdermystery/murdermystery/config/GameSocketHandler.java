@@ -44,6 +44,8 @@ public class GameSocketHandler extends TextWebSocketHandler {
             case "PLAY_CARD":
                 this.playCard(session, Integer.parseInt(jsonObject.get("cardIndex").toString()), jsonObject);
                 return;
+            case "SELECT_PLAYER":
+                this.selectPlayer(session, jsonObject.get("playerId").toString());
         }
     }
 
@@ -63,16 +65,14 @@ public class GameSocketHandler extends TextWebSocketHandler {
         game.onUpdate();
     }
 
-    public void playCard(WebSocketSession session, int cardIndex, JSONObject args) {
+    public void playCard(WebSocketSession session, int cardId, JSONObject args) {
         Player player = game.getPlayers().get(session.getId());
-        Card card = player.getCard(cardIndex);
+        Card card = player.getCard(cardId);
         if (card instanceof FavourCard) {
-            Player otherPlayer = game.getPlayers().get(args.get("otherPlayerId").toString());
-            Card otherCard = otherPlayer.getDeck().get(Integer.parseInt(args.get("otherCardIndex").toString()));
-            ((FavourCard) card).favour(game, player, otherPlayer, otherCard);
+            ((FavourCard) card).favour(game, player);
         } else if (card instanceof AccuseCard) {
             Player otherPlayer = game.getPlayers().get(args.get("otherPlayerId").toString());
-            ((AccuseCard) card).accuse(game, otherPlayer);
+            ((AccuseCard) card).accuse(game, player);
         } else if (card instanceof SwapCard) {
             Player otherPlayer = game.getPlayers().get(args.get("otherPlayerId").toString());
             Card playerCard = player.getDeck().get(Integer.parseInt(args.get("playerCardIndex").toString()));
@@ -81,10 +81,20 @@ public class GameSocketHandler extends TextWebSocketHandler {
         }
     }
 
+    public void selectPlayer(WebSocketSession session, String playerId) {
+        Player player = game.getPlayers().get(playerId);
+        game.selectPlayer(player);
+    }
+
+    public void selectCard(WebSocketSession session, int cardId) {
+        Player player = game.getPlayers().get(session.getId());
+        game.selectCard(player.getCard(cardId));
+    }
+
     public void sendUpdate(WebSocketSession session) {
         try {
             JSONObject gameObj = new JSONObject(game);
-            gameObj.put("cards", new JSONObject(game.getPlayers().get(session.getId()).getDeck()));
+            gameObj.put("me", new JSONObject(game.getPlayers().get(session.getId())));
             JSONObject toSend = new JSONObject();
             toSend.put("event", "UPDATE");
             toSend.put("state", gameObj);

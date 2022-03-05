@@ -1,12 +1,12 @@
 package com.murdermystery.murdermystery;
 
 public class AccuseCard extends Card {
-    
-    public Boolean accuse(Player userPlayer, Card accuseCard) {
-        if (userPlayer.getIsAlive == false) {
+
+    public Boolean accuse(GameState gd, Player userPlayer) {
+        if (userPlayer.getIsAlive() == false) {
             return false;
         }
-        userPlayer.removeCard(accuseCard);
+        userPlayer.getDeck().remove(this);
         return true;
     }
 }

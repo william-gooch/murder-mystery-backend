@@ -2,34 +2,36 @@ package com.murdermystery.murdermystery;
 
 import java.util.*;
 
+import com.murdermystery.murdermystery.SelectionRequest.SelectionType;
+
 public class FavourCard extends Card {
 
-<<<<<<< HEAD
-    public Boolean favour(GameState gd, Player userPlayer, Player otherPlayer, Card favourCard, Card targetCard) {
-        if (gd.getisDay == false) {
+    public Boolean favour(GameState gd, Player userPlayer) {
+        if (gd.getDay() == false) {
             return false;
         }
-=======
-    public GameState favour(GameState gd, Player userPlayer, Player otherPlayer, Card targetCard) {
-
->>>>>>> 174c9c573ecac5bd8a6e3f77c3e2d38ae51c407b
         Map<String, Player> players = gd.getPlayers();
         List<Player> playerList = new ArrayList<>(players.values());
         ArrayList<Card> userDeck = userPlayer.getDeck();
-        ArrayList<Card> otherDeck = otherPlayer.getDeck();
 
-        // validation and favouring
-        if (playerList.contains(userPlayer) && playerList.contains(otherPlayer)
-                && otherDeck.contains(targetCard)) {
-            userDeck.remove(this);
-            otherDeck.remove(targetCard);
-            userDeck.add(targetCard);
-
-            players.get(Player.getIdOfPlayer(players, userPlayer)).setDeck(userDeck);
-            players.get(Player.getIdOfPlayer(players, otherPlayer)).setDeck(otherDeck);
-        } else {
-            // will bring up error
-        }
+        gd.requestSelection(userPlayer, SelectionType.PlayerSelection, (result) -> {
+            Player otherPlayer = result.getPlayer();
+            ArrayList<Card> otherDeck = otherPlayer.getDeck();
+            gd.requestSelection(otherPlayer, SelectionType.CardSelection, (cardResult) -> {
+                Card targetCard = cardResult.getCard();
+                // validation and favouring
+                if (playerList.contains(userPlayer) && playerList.contains(otherPlayer)
+                        && otherDeck.contains(targetCard)) {
+                    userDeck.remove(this);
+                    otherDeck.remove(targetCard);
+                    userDeck.add(targetCard);
+                    players.get(Player.getIdOfPlayer(players, userPlayer)).setDeck(userDeck);
+                    players.get(Player.getIdOfPlayer(players, otherPlayer)).setDeck(otherDeck);
+                } else {
+                    // will bring up error
+                }
+            });
+        });
         return true;
     }
 }

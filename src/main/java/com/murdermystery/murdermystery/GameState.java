@@ -1,11 +1,15 @@
 package com.murdermystery.murdermystery;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.*;
 import java.util.Map.Entry;
-import java.util.concurrent.ThreadLocalRandom;
 
 import com.murdermystery.murdermystery.Player;
+
+import org.springframework.expression.spel.ast.Selection;
 
 public class GameState {
 
@@ -20,6 +24,8 @@ public class GameState {
     private int initHand;
     private int turn;
     private Boolean isDay;
+
+    private SelectionRequest currentSelection;
 
     private List<Listener> listeners;
 
@@ -56,7 +62,7 @@ public class GameState {
 
     public void initGame(int noPlayers) {
         // use below to find murderer
-        int randomNum = randomFromRange(0, noPlayers);  //https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
+        int randomNum = randomFromRange(0, noPlayers); // https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
         int counter = 0;
         // initialise every player
         for (Player player : idPlayers.values()) {
@@ -125,4 +131,29 @@ public class GameState {
         this.isDay = !this.isDay;
     }
 
-}   
+    public void requestSelection(Player target, SelectionRequest.SelectionType type,
+            Consumer<SelectionRequest.SelectionResult> onCompletion) {
+        this.currentSelection = new SelectionRequest(target, type, onCompletion);
+    }
+
+    public SelectionRequest getSelection() {
+        return this.currentSelection;
+    }
+
+    public void selectPlayer(Player otherPlayer) {
+        if (this.currentSelection != null) {
+            SelectionRequest req = this.currentSelection;
+            this.currentSelection = null;
+            req.fulfil(otherPlayer);
+        }
+    }
+
+    public void selectCard(Card otherCard) {
+        if (this.currentSelection != null) {
+            SelectionRequest req = this.currentSelection;
+            this.currentSelection = null;
+            req.fulfil(otherCard);
+        }
+    }
+
+}
