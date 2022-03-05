@@ -4,20 +4,7 @@ import SendMessage from './SendMessage';
 
 function GameChat(props) {
 
-  const [messages, setMessages] = useState([])
-
-  useEffect(() => {
-    props.socket.onmessage = function(event) {
-      const data = JSON.parse(event.data);
-      try {
-        //CHECK IF CHAT MESSAGE
-        setMessages(arr => [...arr, data])
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  }, []);
-
+  const [messages, setMessages] = useState(props.state.messages)
 
   return (
     <div >
@@ -28,7 +15,7 @@ function GameChat(props) {
           {item.text}
         </>
       ))}
-      <SendMessage socket={props.socket}/>
+      <SendMessage state={props.state} dispatch={props.dispatch}/>
     </div>
   );
 }

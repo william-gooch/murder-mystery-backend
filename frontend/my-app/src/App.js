@@ -43,7 +43,7 @@ function App() {
         <Row className="row1">
           <Col xs={8} className="col1">
             <h2>Game</h2>
-            <GameChat socket={socket}  />
+            <GameChat state={state} dispatch={dispatch}  />
           </Col>
           <Col xs={4}>
             <h2>Players</h2>
@@ -52,7 +52,7 @@ function App() {
         </Row>
         <Row className="row2">
           <Col>
-            <Deck name={name} socket={socket}/>
+            <Deck name={name} state={state} dispatch={dispatch}/>
           </Col>
         </Row>
       </Container>

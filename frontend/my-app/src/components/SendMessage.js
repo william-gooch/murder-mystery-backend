@@ -8,7 +8,7 @@ function SendMessage(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.socket.send({event: "SEND_MESSAGE", value: msg});
+    props.dispatch("SEND_MESSAGE", { message: msg });
     props.close();
   }
 

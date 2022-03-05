@@ -4,18 +4,7 @@ import '../App.css';
 
 function Deck(props) {
 
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    props.socket.onmessage = function(event) {
-      const data = JSON.parse(event.data);
-      try { //CHECK IF CARDS DATA
-        setCards(arr => [...arr, data])
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  }, []);
+  const [cards, setCards] = useState(props.state.cards);
 
   return (
     <div >
