@@ -1,5 +1,5 @@
 import './App.css';
-import { Container, Row, Col, Modal} from 'react-bootstrap';
+import { Container, Row, Col, Modal, Button } from 'react-bootstrap';
 import Deck from './components/Deck';
 import GameChat from './components/GameChat';
 import { useEffect, useState } from 'react';
@@ -8,6 +8,7 @@ import TutorialPopup from './components/TutorialPopup';
 import useWebsocket from './useWebsocket';
 import PlayerList from './components/PlayerList';
 import SelectPlayerPopup from './components/SelectPlayerPopup';
+import SelectCardPopup from './components/SelectCardPopup';
 
 
 function App() {
@@ -23,6 +24,10 @@ function App() {
   const close = () => {
     setNameOpen(false);
     setTutOpen(false);
+  }
+
+  const startGame = () => {
+    dispatch("START_GAME")
   }
 
   return (
@@ -48,12 +53,12 @@ function App() {
           </Modal.Dialog>
         </div>
       )}
-      {state?.selection?.player?.id === props.state?.me?.id && props.state?.selection?.type === "PlayerSelection" && 
+      {state?.selection?.player?.id === state?.me?.id && state?.selection?.type === "PlayerSelection" && 
         <div className="nameModal">
           <SelectPlayerPopup state={state} dispatch={dispatch} />
         </div>
       }
-      {state?.selection?.player?.id === props.state?.me?.id && props.state?.selection?.type === "CardSelection" && 
+      {state?.selection?.player?.id === state?.me?.id && state?.selection?.type === "CardSelection" && 
         <div className="nameModal">
           <SelectCardPopup state={state} dispatch={dispatch} />
         </div>
@@ -69,6 +74,7 @@ function App() {
             <h2>Players</h2>
             <PlayerList state={state} />
             <TutorialPopup setTutOpen={setTutOpen} />
+            <Button variant="primary" onClick={startGame}>Start Game</Button>
           </Col>
         </Row>
         <Row className="row2">

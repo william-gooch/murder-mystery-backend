@@ -4,14 +4,6 @@ import '../App.css';
 
 function Deck(props) {
 
-  useEffect(() => {
-    let timer1 = setTimeout(() =>  props.dispatch("START_GAME", { }), 5 * 1000);
-
-      return () => {
-        clearTimeout(timer1);
-      };
-  }, [props.dispatch])
-
   return (
     <div >
       <h2>{props.name}'s Deck</h2>
