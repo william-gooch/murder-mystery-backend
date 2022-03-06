@@ -11,8 +11,6 @@ function TutorialPopup(props) {
     props.setTutOpen(true);
   }
 
-
-
   return (
     <div>
       <Button variant="secondary" onClick={openPopup}>Tutorial</Button>

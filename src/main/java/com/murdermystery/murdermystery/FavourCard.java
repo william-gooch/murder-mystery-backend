@@ -39,6 +39,7 @@ public class FavourCard extends Card {
                     userDeck.add(targetCard);
                     players.get(Player.getIdOfPlayer(players, userPlayer)).setDeck(userDeck);
                     players.get(Player.getIdOfPlayer(players, otherPlayer)).setDeck(otherDeck);
+                    gd.endTurn();
                 } else {
                     // will bring up error
                 }

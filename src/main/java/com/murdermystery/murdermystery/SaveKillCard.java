@@ -1,5 +1,7 @@
 package com.murdermystery.murdermystery;
 
+import java.util.ArrayList;
+
 import com.murdermystery.murdermystery.SelectionRequest.SelectionType;
 
 public class SaveKillCard extends Card {
@@ -27,6 +29,7 @@ public class SaveKillCard extends Card {
             for (Card card : burn) {
                 gd.discard(card);
             }
+            gd.endTurn();
         });
         return true;
     }
@@ -38,6 +41,7 @@ public class SaveKillCard extends Card {
                 return;
             }
             gd.savePlayer(toSave.getId());
+            gd.endTurn();
         });
         return true;
     }

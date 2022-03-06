@@ -2,7 +2,7 @@ import './App.css';
 import { Container, Row, Col, Modal, Button } from 'react-bootstrap';
 import Deck from './components/Deck';
 import GameChat from './components/GameChat';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CreateName from './components/CreateName';
 import TutorialPopup from './components/TutorialPopup';
 import useWebsocket from './useWebsocket';
@@ -12,11 +12,11 @@ import SelectCardPopup from './components/SelectCardPopup';
 
 
 function App() {
-
   const [state, dispatch] = useWebsocket();
 
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
+
 
   const [nameOpen, setNameOpen] = useState(true)
   const [tutOpen, setTutOpen] = useState(false)
@@ -30,8 +30,17 @@ function App() {
     dispatch("START_GAME")
   }
 
+  const dark = React.useMemo(() => state ? !state.day : false, [state]);
+  React.useEffect(() => {
+    if(dark) {
+      document.body.style.backgroundColor = "#111";
+    } else {
+      document.body.style.backgroundColor = "#fff";
+    }
+  }, [dark]);
+
   return (
-    <div className="App">
+    <div className={`App ${dark ? 'dark' : ''}`}>
       {(tutOpen || nameOpen) && <div className="startPrompt"></div>}
       {nameOpen && (
         <CreateName
@@ -49,7 +58,16 @@ function App() {
               <Modal.Title>Tutorial</Modal.Title>
             </Modal.Header>
 
-            <Modal.Body>Bla bla</Modal.Body>
+            <Modal.Body>
+              Welcome to Mysterious Murder the card game!
+              <ul>
+                <li>Start the game when enough players join</li>
+                <li>Use your cards and chat to interact with players</li>
+                <li>Intereactions differ in the day and night</li>
+                <li>Start the game when enough players join</li>
+
+              </ul>
+            </Modal.Body>
           </Modal.Dialog>
         </div>
       )}

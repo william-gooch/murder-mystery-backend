@@ -50,6 +50,9 @@ public class GameSocketHandler extends TextWebSocketHandler {
             case "SELECT_CARD":
                 this.selectCard(session, Integer.parseInt(jsonObject.get("cardId").toString()));
                 return;
+            case "END_TURN":
+                this.endTurn(session);
+                return;
         }
     }
 
@@ -74,10 +77,17 @@ public class GameSocketHandler extends TextWebSocketHandler {
         if (card instanceof FavourCard) {
             ((FavourCard) card).favour(game, player);
         } else if (card instanceof AccuseCard) {
-            Player otherPlayer = game.getPlayers().get(args.get("otherPlayerId").toString());
             ((AccuseCard) card).accuse(game, player);
         } else if (card instanceof SwapCard) {
             ((SwapCard) card).swap(game, player);
+        } else if (card instanceof StealCard) {
+            ((StealCard) card).steal(game, player);
+        } else if (card instanceof SaveKillCard) {
+            if (player.getIsMurderer()) {
+                ((SaveKillCard) card).kill(game, player);
+            } else {
+                ((SaveKillCard) card).save(game, player);
+            }
         }
         game.onUpdate();
     }
@@ -92,6 +102,14 @@ public class GameSocketHandler extends TextWebSocketHandler {
         Player player = game.getPlayers().get(session.getId());
         game.selectCard(player.getCard(cardId));
         game.onUpdate();
+    }
+
+    public void endTurn(WebSocketSession session) {
+        Player player = game.getPlayers().get(session.getId());
+        if (player.getId().equals(game.getCurrentPlayerId())) {
+            game.endTurn();
+            game.onUpdate();
+        }
     }
 
     public void sendUpdate(WebSocketSession session) {
