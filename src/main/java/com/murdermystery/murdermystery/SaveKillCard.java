@@ -1,5 +1,7 @@
 package com.murdermystery.murdermystery;
 
+import java.util.ArrayList;
+
 import com.murdermystery.murdermystery.SelectionRequest.SelectionType;
 
 public class SaveKillCard extends Card {
@@ -22,6 +24,11 @@ public class SaveKillCard extends Card {
                 return;
             }
             toKill.setIsAlive(false);
+            ArrayList<Card> burn = toKill.getDeck();
+            toKill.setDeck(new ArrayList<Card>());
+            for (Card card : burn) {
+                gd.discard(card);
+            }
             gd.endTurn();
         });
         return true;
