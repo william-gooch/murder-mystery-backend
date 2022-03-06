@@ -58,7 +58,16 @@ function App() {
               <Modal.Title>Tutorial</Modal.Title>
             </Modal.Header>
 
-            <Modal.Body>Bla bla</Modal.Body>
+            <Modal.Body>
+              Welcome to Mysterious Murder the card game!
+              <ul>
+                <li>Start the game when enough players join</li>
+                <li>Use your cards and chat to interact with players</li>
+                <li>Intereactions differ in the day and night</li>
+                <li>Start the game when enough players join</li>
+
+              </ul>
+            </Modal.Body>
           </Modal.Dialog>
         </div>
       )}
