@@ -12,11 +12,14 @@ import SelectCardPopup from './components/SelectCardPopup';
 
 
 function App() {
+  document.body.style.backgroundColor = "#111";
 
   const [state, dispatch] = useWebsocket();
 
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
+
+  const [dark, setDark] = useState(true);
 
   const [nameOpen, setNameOpen] = useState(true)
   const [tutOpen, setTutOpen] = useState(false)
@@ -30,8 +33,18 @@ function App() {
     dispatch("START_GAME")
   }
 
+  const darkHandler = () => {
+    if(!dark) {
+      document.body.style.backgroundColor = "#111";
+    } else {
+      document.body.style.backgroundColor = "#fff";
+    }
+    setDark(!dark);
+  }
+
   return (
-    <div className="App">
+    <div className={`App ${dark ? 'dark' : ''}`}>
+      <span onClick={darkHandler} className="darkMode"><img src="./images/dark-mode.png" alt="d" width="24" height="24" /></span>
       {(tutOpen || nameOpen) && <div className="startPrompt"></div>}
       {nameOpen && (
         <CreateName

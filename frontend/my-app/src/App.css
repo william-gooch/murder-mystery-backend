@@ -8,8 +8,18 @@
   font-family: 'SyneMono';
 }
 
+.darkMode {
+  position: fixed;
+  top: 10px;
+  right: 5px;
+}
+
+.dark {
+  filter: invert();
+}
+
 .startPrompt {
-  background-color: gray;
+  background-color: rgb(37, 37, 37);
   opacity: 0.5;
   position: absolute;
   z-index: 3;
@@ -92,5 +102,4 @@ body, html{height:100%}
 .deck {
   display: flex;
   gap: 10px;
-
 }

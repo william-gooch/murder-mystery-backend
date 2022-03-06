@@ -17,7 +17,7 @@ function Card(props) {
   return (
     <div>
       <BCard style={{ width: "8rem", boxShadow: "0px 3px 8px -4px #000000" }}>
-        <BCard.Img variant="top" src="holder.js/100px180" />
+        <BCard.Img variant="top" src={`./images/${props.ID}.png`} />
         <BCard.Body>
           <BCard.Title>{props.name}</BCard.Title>
           <BCard.Text>
