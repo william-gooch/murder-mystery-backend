@@ -22,6 +22,7 @@ public class GameState {
     private HashMap<String, Player> idPlayers;
     private ArrayList<Card> activePile;
     private ArrayList<Card> discardPile;
+    private HashSet<String> savedPlayerIds;
     private int initHand;
     private int turn;
     private Boolean isDay;
@@ -100,12 +101,20 @@ public class GameState {
         return idPlayers;
     }
 
+    public boolean isPlayerSafe(String playerId) {
+        return this.savedPlayerIds.contains(playerId);
+    }
+
+    public void savePlayer(String playerId) {
+        this.savedPlayerIds.add(playerId);
+    }
+
     public Chat getChat() {
         return chat;
     }
 
     public void addPlayer(String id) {
-        Player newPlayer = new Player("Unnamed");
+        Player newPlayer = new Player(id, "Unnamed");
         idPlayers.put(id, newPlayer);
     }
 

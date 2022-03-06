@@ -1,5 +1,7 @@
 package com.murdermystery.murdermystery;
 
+import com.murdermystery.murdermystery.SelectionRequest.SelectionType;
+
 public class saveKillCard extends Card {
     public saveKillCard(int id) {
         this.id = id;
@@ -12,23 +14,26 @@ public class saveKillCard extends Card {
         return true;
     }
 
-    public Boolean kill(Player killer, Player toKill, Player saved) {
-        String murderer = killer.getName();
-        String victim = toKill.getName();
-        String safe = saved.getName();
-        if (murderer.equals(victim)) {
-            return false;
-        } else if (victim.equals(safe)) {
-            return false;
-        }
-        toKill.setIsAlive(false);
+    public Boolean kill(GameState gd, Player killer) {
+        gd.requestSelection(killer, SelectionType.PlayerSelection, (result) -> {
+            Player toKill = result.getPlayer();
+            String victim = toKill.getId();
+            if (gd.isPlayerSafe(victim)) {
+                return;
+            }
+            toKill.setIsAlive(false);
+        });
         return true;
     }
 
-    public Boolean save(Player toSave) {
-        if (toSave.getIsAlive() == false) {
-            return false;
-        }
+    public Boolean save(GameState gd, Player saviour) {
+        gd.requestSelection(saviour, SelectionType.PlayerSelection, (result) -> {
+            Player toSave = result.getPlayer();
+            if (toSave.getIsAlive() == false) {
+                return;
+            }
+            gd.savePlayer(toSave.getId());
+        });
         return true;
     }
 }

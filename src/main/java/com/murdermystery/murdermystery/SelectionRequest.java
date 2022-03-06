@@ -44,6 +44,7 @@ public class SelectionRequest {
     public SelectionRequest(Player target, SelectionType type, Consumer<SelectionResult> onCompletion) {
         this.target = target;
         this.type = type;
+        this.onCompletion = onCompletion;
     }
 
     public Player getPlayer() {

@@ -5,7 +5,16 @@ function useWebsocket() {
     const [state, setState] = useState();
 
     useEffect(() => {
-        const socket = new WebSocket("ws://localhost:3456/ws");
+        var ws_url;
+        if(window.location.protocol === "https:") {
+            ws_url = "wss:";
+        } else {
+            ws_url = "ws:";
+        }
+        ws_url += "//" + window.location.host;
+        ws_url += window.location.pathname + "/ws";
+
+        const socket = new WebSocket(ws_url);
 
         socket.onopen = function(e) {
             console.log("[open] Connection established");

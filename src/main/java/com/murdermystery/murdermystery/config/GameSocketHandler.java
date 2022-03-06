@@ -42,12 +42,14 @@ public class GameSocketHandler extends TextWebSocketHandler {
                 this.startGame(session);
                 return;
             case "PLAY_CARD":
-                this.playCard(session, Integer.parseInt(jsonObject.get("cardIndex").toString()), jsonObject);
+                this.playCard(session, Integer.parseInt(jsonObject.get("cardId").toString()), jsonObject);
                 return;
             case "SELECT_PLAYER":
                 this.selectPlayer(session, jsonObject.get("playerId").toString());
+                return;
             case "SELECT_CARD":
                 this.selectCard(session, Integer.parseInt(jsonObject.get("cardId").toString()));
+                return;
         }
     }
 
@@ -80,16 +82,19 @@ public class GameSocketHandler extends TextWebSocketHandler {
             Card otherCard = otherPlayer.getDeck().get(Integer.parseInt(args.get("otherCardIndex").toString()));
             ((SwapCard) card).swap(player, otherPlayer, playerCard, otherCard, game);
         }
+        game.onUpdate();
     }
 
     public void selectPlayer(WebSocketSession session, String playerId) {
         Player player = game.getPlayers().get(playerId);
         game.selectPlayer(player);
+        game.onUpdate();
     }
 
     public void selectCard(WebSocketSession session, int cardId) {
         Player player = game.getPlayers().get(session.getId());
         game.selectCard(player.getCard(cardId));
+        game.onUpdate();
     }
 
     public void sendUpdate(WebSocketSession session) {

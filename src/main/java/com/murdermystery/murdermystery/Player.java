@@ -5,13 +5,15 @@ import java.util.Map.Entry;
 
 public class Player {
 
+    private String id;
     private String name;
     private ArrayList<Card> deck;
     private Boolean isMurderer;
     private Boolean isAlive;
     private Boolean turnDone;
 
-    public Player(String name) {
+    public Player(String id, String name) {
+        this.id = id;
         this.name = name;
         this.deck = new ArrayList<Card>();
         this.isMurderer = false;
@@ -29,6 +31,10 @@ public class Player {
 
     public ArrayList<Card> getDeck() {
         return deck;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {

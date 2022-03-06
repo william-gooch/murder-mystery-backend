@@ -10,6 +10,10 @@ function Card(props) {
     setOpen(!open);
   }
 
+  const playCard = () => {
+    props.dispatch("PLAY_CARD", { cardId: props.ID })
+  }
+
   return (
     <div>
       <BCard style={{ width: "8rem", boxShadow: "0px 3px 8px -4px #000000" }}>
@@ -19,7 +23,7 @@ function Card(props) {
           <BCard.Text>
             {props.desc}
           </BCard.Text>
-          {props.playable && <Button variant="primary">Play</Button>}
+          {props.playable && <Button variant="primary" onClick={playCard}>Play</Button>}
         </BCard.Body>
       </BCard>
     </div>

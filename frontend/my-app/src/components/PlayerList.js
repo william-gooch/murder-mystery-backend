@@ -13,7 +13,7 @@ function PlayerList(props) {
                 Object.keys(props.state.players).map((key, index) => (
                   <td valign="top">
 
-                  <Card className="message">
+                  <Card className="player">
                     <div>{props.state.players[key].name}</div>
                   </Card>
                   </td>

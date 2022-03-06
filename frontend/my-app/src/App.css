@@ -26,6 +26,15 @@
   transform: translateY(-50%);
 }
 
+.popup {
+  margin: auto;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  z-index: 6;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .sendMessage {
   bottom: 0;
 }
@@ -48,7 +57,7 @@ body, html{height:100%}
 .playerBox {
   height: 100%;
   width: 100%;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .message {
@@ -57,6 +66,14 @@ body, html{height:100%}
   text-align: left;
   float: left;
   width: 90%;
+}
+
+.player {
+  margin: 3px;
+  padding: 5px;
+  text-align: left;
+  float: left;
+  width: 100%;
 }
 
 .row1 {
@@ -70,4 +87,10 @@ body, html{height:100%}
 
 .col1 {
   border-right: solid 5px black;
+}
+
+.deck {
+  display: flex;
+  gap: 10px;
+
 }
