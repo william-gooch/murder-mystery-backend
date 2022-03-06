@@ -2,8 +2,8 @@ package com.murdermystery.murdermystery;
 
 import com.murdermystery.murdermystery.SelectionRequest.SelectionType;
 
-public class saveKillCard extends Card {
-    public saveKillCard(int id) {
+public class SaveKillCard extends Card {
+    public SaveKillCard(int id) {
         this.id = id;
         name = "Save/Kill Card";
         desc = "Can protect a player from certain death, or allow the murderer a kill at nightfall";

@@ -80,8 +80,23 @@ public class Card {
             new LocationCard(69, "Cafeteria", "A place to get nice meals, nice coffee, a nice break. Nice"),
             new LocationCard(70, "Electrical",
                     "Could someone have used the vents system to get into Electrical, and kill someone? Was a body detected here?"),
-            new LocationCard(71, "Lounge", "A place for people to lounge around... and maybe die around")
-
+            new LocationCard(71, "Lounge", "A place for people to lounge around... and maybe die around"),
+            new StealCard(72),
+            new StealCard(73),
+            new StealCard(74),
+            new StealCard(75),
+            new StealCard(76),
+            new StealCard(77),
+            new StealCard(78),
+            new StealCard(79),
+            new SaveKillCard(80),
+            new SaveKillCard(81),
+            new SaveKillCard(82),
+            new SaveKillCard(83),
+            new SaveKillCard(84),
+            new SaveKillCard(85),
+            new SaveKillCard(86),
+            new SaveKillCard(87),
     };
 
     protected int id;

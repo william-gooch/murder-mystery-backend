@@ -77,10 +77,7 @@ public class GameSocketHandler extends TextWebSocketHandler {
             Player otherPlayer = game.getPlayers().get(args.get("otherPlayerId").toString());
             ((AccuseCard) card).accuse(game, player);
         } else if (card instanceof SwapCard) {
-            Player otherPlayer = game.getPlayers().get(args.get("otherPlayerId").toString());
-            Card playerCard = player.getDeck().get(Integer.parseInt(args.get("playerCardIndex").toString()));
-            Card otherCard = otherPlayer.getDeck().get(Integer.parseInt(args.get("otherCardIndex").toString()));
-            ((SwapCard) card).swap(player, otherPlayer, playerCard, otherCard, game);
+            ((SwapCard) card).swap(game, player);
         }
         game.onUpdate();
     }
