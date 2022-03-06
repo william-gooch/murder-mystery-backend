@@ -148,6 +148,12 @@ public class GameState {
         return ret;
     }
 
+    public List<Card> getAllEvidence() {
+        return Arrays.stream(Card.getDeck())
+                .filter(r -> !r.isPlayable())
+                .collect(Collectors.toList());
+    }
+
     public void discard(Card card) {
         this.discardPile.add(card);
     }
@@ -208,6 +214,15 @@ public class GameState {
 
     public LocationCard getLC() {
         return lc;
+    }
+
+    public void selectEvidence(Player otherPlayer, int weaponCardId, int timeCardId, int dayCardId,
+            int locationCardId) {
+        if (this.currentSelection != null) {
+            SelectionRequest req = this.currentSelection;
+            this.currentSelection = null;
+            req.fulfil(new TotalEvidence(otherPlayer, weaponCardId, timeCardId, dayCardId, locationCardId));
+        }
     }
 
     public void constructScenario() {

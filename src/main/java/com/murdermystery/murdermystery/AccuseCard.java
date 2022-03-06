@@ -28,33 +28,22 @@ public class AccuseCard extends Card {
 
     public Boolean deduction(GameState gd, Player userPlayer) {
         Map<String, Player> players = gd.getPlayers();
-        Player murdererM = null;
-        Card weaponM = null;
-        Card timeM = null;
-        Card dayM = null;
-        Card locationM = null;
 
-        gd.requestSelection(userPlayer, SelectionType.PlayerSelection, (m) -> {
-           murdererM = m.getPlayer();
-        });    
-        gd.requestSelection(userPlayer, SelectionType.CardSelection, (w) -> {
-            weaponM = w.getCard();
-        });
-        gd.requestSelection(userPlayer, SelectionType.CardSelection, (t) -> {
-            timeM = t.getCard();
-        });
-        gd.requestSelection(userPlayer, SelectionType.CardSelection,  (d) -> {
-            dayM = d.getCard();
-        });
-        gd.requestSelection(userPlayer, SelectionType.CardSelection, (l) -> {
-            locationM = l.getCard();
-        });
-        if(murdererM.getIsMurderer()) {
-            if(weaponM.equals(gd.getWC()) && timeM.equals(gd.getTC()) && dayM.equals(gd.getDC())
-                && locationM.equals(gd.getLC())) {
-                    return true;
+        gd.requestSelection(userPlayer, SelectionType.EvidenceSelection, (m) -> {
+            TotalEvidence e = m.getEvidence();
+            Player murdererM = e.getPlayer();
+            int weaponM = e.getWeapon();
+            int timeM = e.getTime();
+            int dayM = e.getDay();
+            int locationM = e.getLocation();
+            if (murdererM.getIsMurderer()) {
+                if (weaponM == gd.getWC().getID() && timeM == gd.getTC().getID()
+                        && dayM == gd.getDC().getID()
+                        && locationM == gd.getLC().getID()) {
+
                 }
-        }
-        return false;
+            }
+        });
+        return true;
     }
 }

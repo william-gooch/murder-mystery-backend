@@ -30,6 +30,7 @@ public class StealCard extends Card {
             Card stolen = victim.getDeck().get(cardIndex);
             victim.getDeck().remove(stolen);
             stealer.addCard(stolen);
+            stealer.getDeck().remove(this);
             gd.endTurn();
         });
         return true;

@@ -6,12 +6,14 @@ import java.util.function.Consumer;
 public class SelectionRequest {
     public enum SelectionType {
         PlayerSelection,
-        CardSelection
+        CardSelection,
+        EvidenceSelection,
     }
 
     public class SelectionResult {
         private Player player;
         private Card card;
+        private TotalEvidence evidence;
         private SelectionType type;
 
         public SelectionResult(Player player, SelectionType type) {
@@ -24,12 +26,21 @@ public class SelectionRequest {
             this.type = type;
         }
 
+        public SelectionResult(TotalEvidence evidence, SelectionType type) {
+            this.evidence = evidence;
+            this.type = type;
+        }
+
         public Player getPlayer() {
             return this.player;
         }
 
         public Card getCard() {
             return this.card;
+        }
+
+        public TotalEvidence getEvidence() {
+            return this.evidence;
         }
 
         public SelectionType getType() {
@@ -61,5 +72,9 @@ public class SelectionRequest {
 
     public void fulfil(Card card) {
         onCompletion.accept(new SelectionResult(card, SelectionType.CardSelection));
+    }
+
+    public void fulfil(TotalEvidence evidence) {
+        onCompletion.accept(new SelectionResult(evidence, SelectionType.EvidenceSelection));
     }
 }

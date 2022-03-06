@@ -50,6 +50,13 @@ public class GameSocketHandler extends TextWebSocketHandler {
             case "SELECT_CARD":
                 this.selectCard(session, Integer.parseInt(jsonObject.get("cardId").toString()));
                 return;
+            case "SELECT_EVIDENCE":
+                this.selectEvidence(session,
+                        jsonObject.get("playerId").toString(),
+                        Integer.parseInt(jsonObject.get("weaponCardId").toString()),
+                        Integer.parseInt(jsonObject.get("timeCardId").toString()),
+                        Integer.parseInt(jsonObject.get("dayCardId").toString()),
+                        Integer.parseInt(jsonObject.get("locationCardId").toString()));
             case "END_TURN":
                 this.endTurn(session);
                 return;
@@ -102,6 +109,12 @@ public class GameSocketHandler extends TextWebSocketHandler {
         Player player = game.getPlayers().get(session.getId());
         game.selectCard(player.getCard(cardId));
         game.onUpdate();
+    }
+
+    public void selectEvidence(WebSocketSession session, String playerId, int weaponCardId, int timeCardId,
+            int dayCardId, int locationCardId) {
+        Player player = game.getPlayers().get(playerId);
+        game.selectEvidence(player, weaponCardId, timeCardId, dayCardId, locationCardId);
     }
 
     public void endTurn(WebSocketSession session) {
