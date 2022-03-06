@@ -1,5 +1,9 @@
 package com.murdermystery.murdermystery;
 
+import java.util.concurrent.ThreadLocalRandom;
+
+import com.murdermystery.murdermystery.SelectionRequest.SelectionType;
+
 public class StealCard extends Card {
 
     public StealCard(int id) {
@@ -13,15 +17,20 @@ public class StealCard extends Card {
         return true;
     }
 
-    public Boolean steal(Boolean isDay, Player stealer, Player victim, int toSteal) {
-        if (isDay == true) {
-            return false;
-        } else if (victim.getDeck().size() == 0) {
+    public Boolean steal(GameState gd, Player stealer) {
+        if (gd.getDay() == true) {
             return false;
         }
-        Card stolen = victim.getDeck().get(toSteal);
-        victim.getDeck().remove(stolen);
-        stealer.addCard(stolen);
+        gd.requestSelection(stealer, SelectionType.PlayerSelection, (result) -> {
+            Player victim = result.getPlayer();
+            if (victim.getDeck().size() == 0) {
+                return;
+            }
+            int cardIndex = ThreadLocalRandom.current().nextInt(0, victim.getDeck().size());
+            Card stolen = victim.getDeck().get(cardIndex);
+            victim.getDeck().remove(stolen);
+            stealer.addCard(stolen);
+        });
         return true;
     }
 }
