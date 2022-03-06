@@ -2,7 +2,7 @@ import './App.css';
 import { Container, Row, Col, Modal, Button } from 'react-bootstrap';
 import Deck from './components/Deck';
 import GameChat from './components/GameChat';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CreateName from './components/CreateName';
 import TutorialPopup from './components/TutorialPopup';
 import useWebsocket from './useWebsocket';
@@ -12,14 +12,11 @@ import SelectCardPopup from './components/SelectCardPopup';
 
 
 function App() {
-  document.body.style.backgroundColor = "#111";
-
   const [state, dispatch] = useWebsocket();
 
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
 
-  const [dark, setDark] = useState(true);
 
   const [nameOpen, setNameOpen] = useState(true)
   const [tutOpen, setTutOpen] = useState(false)
@@ -33,18 +30,17 @@ function App() {
     dispatch("START_GAME")
   }
 
-  const darkHandler = () => {
-    if(!dark) {
+  const dark = React.useMemo(() => state ? !state.day : false, [state]);
+  React.useEffect(() => {
+    if(dark) {
       document.body.style.backgroundColor = "#111";
     } else {
       document.body.style.backgroundColor = "#fff";
     }
-    setDark(!dark);
-  }
+  }, [dark]);
 
   return (
     <div className={`App ${dark ? 'dark' : ''}`}>
-      <span onClick={darkHandler} className="darkMode"><img src="./images/dark-mode.png" alt="d" width="24" height="24" /></span>
       {(tutOpen || nameOpen) && <div className="startPrompt"></div>}
       {nameOpen && (
         <CreateName
