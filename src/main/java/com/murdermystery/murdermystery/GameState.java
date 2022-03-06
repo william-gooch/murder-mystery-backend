@@ -128,6 +128,9 @@ public class GameState {
             turn -= turnOrder.size();
             isDay = !isDay;
         }
+        for (Player player : idPlayers.values()) {
+            player.addCard(this.drawCard());
+        }
     }
 
     public void addPlayer(String id) {

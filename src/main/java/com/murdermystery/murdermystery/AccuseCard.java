@@ -18,15 +18,6 @@ public class AccuseCard extends Card {
     }
 
     public Boolean accuse(GameState gd, Player userPlayer) {
-        if (!userPlayer.getIsAlive() && !gd.getDay()) {
-            return false;
-        }
-        userPlayer.getDeck().remove(this);
-        gd.discard(this);
-        return true;
-    }
-
-    public Boolean deduction(GameState gd, Player userPlayer) {
         Map<String, Player> players = gd.getPlayers();
 
         gd.requestSelection(userPlayer, SelectionType.EvidenceSelection, (m) -> {

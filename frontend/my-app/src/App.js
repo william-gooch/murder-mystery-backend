@@ -9,6 +9,7 @@ import useWebsocket from './useWebsocket';
 import PlayerList from './components/PlayerList';
 import SelectPlayerPopup from './components/SelectPlayerPopup';
 import SelectCardPopup from './components/SelectCardPopup';
+import Accuse from './components/Accuse';
 
 
 function App() {
@@ -79,6 +80,11 @@ function App() {
       {state?.selection?.player?.id === state?.me?.id && state?.selection?.type === "CardSelection" && 
         <div className="nameModal">
           <SelectCardPopup state={state} dispatch={dispatch} />
+        </div>
+      }
+      {state?.selection?.player?.id === state?.me?.id && state?.selection?.type === "EvidenceSelection" && 
+        <div className="nameModal">
+          <Accuse state={state} dispatch={dispatch} />
         </div>
       }
 
