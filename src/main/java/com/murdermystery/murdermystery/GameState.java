@@ -25,7 +25,12 @@ public class GameState {
     private int initHand;
     private int turn;
     private Boolean isDay;
-
+    private String scenario;
+    private Player murderer;
+    private WeaponCard wc;
+    private TimeCard tc;
+    private DayCard dc;
+    private LocationCard lc;
     private SelectionRequest currentSelection;
 
     private List<Listener> listeners;
@@ -156,6 +161,43 @@ public class GameState {
             SelectionRequest req = this.currentSelection;
             this.currentSelection = null;
             req.fulfil(otherCard);
+        }
+    }
+
+    public void constructScenario() {
+        this.wc = null;
+        this.tc = null;
+        this.dc = null;
+        this.lc = null;
+
+        for (Player player : idPlayers.values()) {
+            if (player.getIsMurderer() == true) {
+                murderer = player;
+            }
+        }
+
+        for(int i = 0; i < activePile.size(); i++) {
+            if(activePile.get(i) instanceof WeaponCard && wc == null) {
+                wc = activePile.get(i);
+                activePile.remove(wc);
+                i = 0;
+            } else if (activePile.get(i) instanceof TimeCard && tc == null) {
+                tc = activePile.get(i);
+                activePile.remove(tc);
+                i = 0;
+            } else if (activePile.get(i) instanceof DayCard && dc == null) {
+                dc = activePile.get(i);
+                activePile.remove(dc);
+                i = 0;
+            } else if (activePile.get(i) instanceof LocationCard && lc == null) {
+                lc = activePile.get(i);
+                activePile.remove(lc);
+                i = 0;
+            } else if (wc != null && tc != null && dc != null && lc != null) {
+                scenario = "You are the murderer. You killed at " + tc.getName()
+                    + ", on " + dc.getName() + ", in the " + lc.getName + ", with a " + wc.getName() + ".";
+            }
+
         }
     }
 
