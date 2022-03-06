@@ -22,6 +22,11 @@ public class SaveKillCard extends Card {
                 return;
             }
             toKill.setIsAlive(false);
+            ArrayList<Card> burn = toKill.getDeck();
+            toKill.setDeck(new ArrayList<Card>());
+            for (Card card : burn) {
+                gd.discard(card);
+            }
         });
         return true;
     }

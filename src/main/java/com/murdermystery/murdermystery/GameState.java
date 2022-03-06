@@ -71,6 +71,7 @@ public class GameState {
         int counter = 0;
         // initialise every player
         for (Player player : idPlayers.values()) {
+            player.setDeck(new ArrayList<Card>());
             // set current player to murderer if they are lucky
             if (counter == randomNum) {
                 player.setIsMurderer(true);
