@@ -2,14 +2,14 @@ import React, {useState, useEffect} from 'react';
 import {Form, Button, Modal} from 'react-bootstrap'; 
 import '../App.css';
 
-function SelectPlayerPopup(props) {
+function SelectCardPopup(props) {
 
   return (
     <div>
         <div className="SelectPlayerModal">
           <Modal.Dialog>
             <Modal.Header>
-              <Modal.Title>Select Player</Modal.Title>
+              <Modal.Title>Select Card</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>Bla bla</Modal.Body>
@@ -19,4 +19,4 @@ function SelectPlayerPopup(props) {
   );
 }
 
-export default SelectPlayerPopup;
+export default SelectCardPopup;

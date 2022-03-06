@@ -48,9 +48,18 @@ function App() {
           </Modal.Dialog>
         </div>
       )}
+      {state?.selection?.player?.id === props.state?.me?.id && props.state?.selection?.type === "PlayerSelection" && 
+        <div className="nameModal">
+          <SelectPlayerPopup state={state} dispatch={dispatch} />
+        </div>
+      }
+      {state?.selection?.player?.id === props.state?.me?.id && props.state?.selection?.type === "CardSelection" && 
+        <div className="nameModal">
+          <SelectCardPopup state={state} dispatch={dispatch} />
+        </div>
+      }
 
       <Container fluid>
-        <SelectPlayerPopup state={state} dispatch={dispatch} />
         <Row className="row1">
           <Col xs={8} className="col1">
             <h2>Game</h2>
