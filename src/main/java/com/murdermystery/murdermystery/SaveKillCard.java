@@ -22,6 +22,7 @@ public class SaveKillCard extends Card {
                 return;
             }
             toKill.setIsAlive(false);
+            gd.endTurn();
         });
         return true;
     }
@@ -33,6 +34,7 @@ public class SaveKillCard extends Card {
                 return;
             }
             gd.savePlayer(toSave.getId());
+            gd.endTurn();
         });
         return true;
     }

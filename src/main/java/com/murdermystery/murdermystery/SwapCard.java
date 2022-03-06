@@ -43,6 +43,8 @@ public class SwapCard extends Card {
 
                         players.get(Player.getIdOfPlayer(players, userPlayer)).setDeck(userDeck);
                         players.get(Player.getIdOfPlayer(players, otherPlayer)).setDeck(otherDeck);
+
+                        gd.endTurn();
                     } else {
                         // will bring up error
                     }

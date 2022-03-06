@@ -23,7 +23,7 @@ function Card(props) {
           <BCard.Text>
             {props.desc}
           </BCard.Text>
-          {props.playable && <Button variant="primary" onClick={playCard}>Play</Button>}
+          {props.playable && <Button variant="primary" disabled={!props.canPlay} onClick={playCard}>Play</Button>}
         </BCard.Body>
       </BCard>
     </div>

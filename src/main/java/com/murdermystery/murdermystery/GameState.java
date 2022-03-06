@@ -4,6 +4,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -24,6 +25,7 @@ public class GameState {
     private ArrayList<Card> discardPile;
     private HashSet<String> savedPlayerIds;
     private int initHand;
+    private List<String> turnOrder;
     private int turn;
     private Boolean isDay;
 
@@ -76,6 +78,8 @@ public class GameState {
             }
             counter++;
         }
+        turnOrder = idPlayers.keySet().stream().collect(Collectors.toList());
+        turn = 0;
 
         // deal cards to players
     }
@@ -106,6 +110,18 @@ public class GameState {
 
     public Chat getChat() {
         return chat;
+    }
+
+    public String getCurrentPlayerId() {
+        return turnOrder.get(turn);
+    }
+
+    public void endTurn() {
+        turn += 1;
+        if (turn >= turnOrder.size()) {
+            turn -= turnOrder.size();
+            isDay = !isDay;
+        }
     }
 
     public void addPlayer(String id) {
