@@ -18,7 +18,7 @@ public class FavourCard extends Card {
     }
 
     public Boolean favour(GameState gd, Player userPlayer) {
-        if (gd.getDay() == false) {
+        if (!gd.getDay()) {
             return false;
         }
         Map<String, Player> players = gd.getPlayers();

@@ -174,6 +174,26 @@ public class GameState {
         }
     }
 
+    public Player getMurderer() {
+        return murderer;
+    }
+
+    public WeaponCard getWC() {
+        return wc;
+    }
+
+    public TimeCard getTC() {
+        return tc;
+    }
+
+    public DayCard getDC() {
+        return dc;
+    }
+
+    public LocationCard getLC() {
+        return lc;
+    }
+
     public void constructScenario() {
         this.wc = null;
         this.tc = null;
